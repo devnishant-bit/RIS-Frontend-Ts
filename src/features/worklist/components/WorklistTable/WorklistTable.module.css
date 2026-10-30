@@ -1,0 +1,24 @@
+/* .tableScroll { overflow: auto; }
+.table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: left; }
+.table th { position: sticky; top: 0; z-index: 1; background: var(--color-table-heading); color: var(--color-text-muted); font-size: 0.64rem; font-weight: 750; letter-spacing: 0.045em; text-transform: uppercase; white-space: nowrap; }
+.table th, .table td { border-bottom: 1px solid var(--color-border); padding: 0.8rem 0.85rem; }
+.table td { color: var(--color-text); font-size: 0.73rem; white-space: nowrap; }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover { background: var(--color-table-hover); }
+.table th:first-child, .table td:first-child { padding-left: 1rem; }
+.patientName { font-weight: 700; }
+.mono { color: var(--color-text-muted) !important; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.68rem !important; }
+.description { max-width: 15rem; overflow: hidden; text-overflow: ellipsis; }
+.numeric { text-align: right; }
+.modality { display: inline-grid; min-width: 2.1rem; min-height: 1.8rem; place-items: center; border-radius: 0.4rem; background: var(--color-accent-soft); color: var(--color-accent); font-size: 0.68rem; font-weight: 800; }
+.status { display: inline-flex; border-radius: 999px; font-size: 0.66rem; font-weight: 700; padding: 0.32rem 0.55rem; }
+.unread { background: #fff4de; color: #895a00; }
+.inProgress { background: #e9f2ff; color: #235da3; }
+.reported { background: #e7f6ed; color: #247442; }
+.emptyState { display: grid; min-height: 17rem; align-content: center; justify-items: center; color: var(--color-text-muted); text-align: center; padding: 2rem; }
+.emptyIcon { display: grid; width: 2.5rem; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); font-size: 1.6rem; }
+.emptyState h3 { margin: 0.75rem 0 0.2rem; color: var(--color-text); font-size: 0.95rem; }
+.emptyState p { margin: 0; font-size: 0.78rem; }
+.emptyState button { margin-top: 0.8rem; border: 0; background: transparent; color: var(--color-accent); cursor: pointer; font: inherit; font-size: 0.75rem; font-weight: 700; }
+.visuallyHidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); } */
+

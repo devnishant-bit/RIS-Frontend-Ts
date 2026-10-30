@@ -1,0 +1,23 @@
+:root {
+  color-scheme: light;
+  --header-height: 4.25rem;
+  --sidebar-width: 15rem;
+  --radius-control: 0.55rem;
+  --radius-card: 0.85rem;
+  --shadow-card: 0 8px 28px rgb(20 37 62 / 5%);
+
+  --color-page: #f4f7fb;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #17243a;
+  --color-text-muted: #63728a;
+  --color-text-subtle: #8a98aa;
+  --color-accent: #2467a6;
+  --color-accent-hover: #1d568e;
+  --color-accent-soft: #eaf3fc;
+  --color-warning-soft: #fff7e6;
+  --color-warning-border: #f1d99c;
+  --color-warning-text: #77540b;
+  --color-table-heading: #f8fafc;
+  --color-table-hover: #f9fbfd;
+}

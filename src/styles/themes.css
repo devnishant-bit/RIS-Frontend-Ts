@@ -1,0 +1,18 @@
+/* Theme variables are global by design; component selectors remain in CSS Modules. */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-page: #111a28;
+  --color-surface: #182437;
+  --color-border: #2c3b51;
+  --color-text: #edf3fb;
+  --color-text-muted: #acbbcf;
+  --color-text-subtle: #8496ad;
+  --color-accent: #73b6f2;
+  --color-accent-hover: #8ec6fa;
+  --color-accent-soft: #203d58;
+  --color-warning-soft: #382f1c;
+  --color-warning-border: #665124;
+  --color-warning-text: #f0d28a;
+  --color-table-heading: #1e2c40;
+  --color-table-hover: #1b2a3e;
+}

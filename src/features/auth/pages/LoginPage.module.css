@@ -1,0 +1,55 @@
+.page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgb(64 119 185 / 15%), transparent 34rem),
+    var(--color-page);
+  padding: 1.2rem;
+}
+
+.card {
+  width: min(100%, 27rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.brandMark {
+  display: grid;
+  width: 3rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.85rem;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.eyebrow { margin: 1.4rem 0 0.5rem; color: var(--color-accent); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.13em; }
+.card h1 { margin: 0; color: var(--color-text); font-size: clamp(1.55rem, 4vw, 2rem); letter-spacing: -0.035em; }
+.description { margin: 0.7rem 0 1.5rem; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6; }
+.actions { display: grid; gap: 0.65rem; }
+
+.primaryButton,
+.secondaryButton {
+  min-height: 2.9rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 0.9rem;
+}
+
+.primaryButton { background: var(--color-accent); color: white; }
+.primaryButton:hover { background: var(--color-accent-hover); }
+.secondaryButton { border-color: var(--color-border); background: var(--color-surface); color: var(--color-text); }
+.secondaryButton:hover { background: var(--color-page); }
+.primaryButton:disabled, .secondaryButton:disabled { cursor: wait; opacity: 0.65; }
+.disclaimer { margin-top: 1rem; border-radius: var(--radius-control); background: var(--color-warning-soft); color: var(--color-warning-text); font-size: 0.74rem; line-height: 1.5; padding: 0.7rem; }
+.loading { display: grid; min-height: 100vh; place-items: center; color: var(--color-text-muted); }

@@ -1,0 +1,981 @@
+/* ==========================================================================
+   SearchBar
+   Theme: data-theme="light" | "dark" is set on the root from the `theme` prop.
+   Every colour comes from the --sf-* variables below. To follow the app theme
+   system, map these to the tokens in styles/tokens.css and styles/themes.css.
+   ========================================================================== */
+
+.root {
+  --sf-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --sf-card-bg: #ffffff;
+  --sf-border: #e2e8f0;
+  --sf-border-hover: #cbd5e1;
+  --sf-border-soft: #f1f5f9;
+  --sf-strip-bg: rgba(248, 250, 252, 0.5);
+  --sf-surface-hover: #f8fafc;
+
+  --sf-text: #334155;
+  --sf-text-strong: #0f172a;
+  --sf-input-text: #1e293b;
+  --sf-muted: #94a3b8;
+  --sf-subtle: #64748b;
+  --sf-label: #334155;
+
+  --sf-accent: #2563eb;
+  --sf-accent-strong: #1d4ed8;
+  --sf-accent-deep: #1e40af;
+  --sf-accent-soft: #eff6ff;
+  --sf-accent-line: #93c5fd;
+  --sf-accent-glow: rgba(29, 78, 216, 0.28);
+
+  --sf-input-bg: #ffffff;
+  --sf-segment-bg: rgba(241, 245, 249, 0.9);
+  --sf-segment-active-bg: #ffffff;
+
+  --sf-shadow-command: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --sf-shadow-card: 0 10px 30px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  --sf-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+
+  --sf-ready-bg: #f0f9ff;
+  --sf-ready-border: #7dd3fc;
+  --sf-ready-text: #0c4a6e;
+  --sf-ready-dot: #0284c7;
+  --sf-draft-bg: #f1f5f9;
+  --sf-draft-border: #94a3b8;
+  --sf-draft-text: #0f172a;
+  --sf-draft-dot: #64748b;
+  --sf-prelim-bg: #fffbeb;
+  --sf-prelim-border: #fbbf24;
+  --sf-prelim-text: #78350f;
+  --sf-prelim-dot: #f59e0b;
+  --sf-final-bg: #ecfdf5;
+  --sf-final-border: #10b981;
+  --sf-final-text: #064e3b;
+  --sf-final-dot: #059669;
+}
+
+.root[data-theme='dark'] {
+  --sf-card-bg: #0f172a;
+  --sf-border: #1e293b;
+  --sf-border-hover: #334155;
+  --sf-border-soft: #1e293b;
+  --sf-strip-bg: rgba(30, 41, 59, 0.45);
+  --sf-surface-hover: #1e293b;
+
+  --sf-text: #cbd5e1;
+  --sf-text-strong: #f1f5f9;
+  --sf-input-text: #e2e8f0;
+  --sf-muted: #64748b;
+  --sf-subtle: #94a3b8;
+  --sf-label: #cbd5e1;
+
+  --sf-accent: #3b82f6;
+  --sf-accent-strong: #2563eb;
+  --sf-accent-deep: #1d4ed8;
+  --sf-accent-soft: rgba(37, 99, 235, 0.18);
+  --sf-accent-line: #3b82f6;
+  --sf-accent-glow: rgba(59, 130, 246, 0.4);
+
+  --sf-input-bg: #111c33;
+  --sf-segment-bg: rgba(30, 41, 59, 0.7);
+  --sf-segment-active-bg: #0f172a;
+
+  --sf-shadow-command: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --sf-shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.5);
+  --sf-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  --sf-ready-bg: rgba(14, 165, 233, 0.14);
+  --sf-ready-border: rgba(56, 189, 248, 0.55);
+  --sf-ready-text: #bae6fd;
+  --sf-ready-dot: #38bdf8;
+  --sf-draft-bg: rgba(148, 163, 184, 0.14);
+  --sf-draft-border: rgba(148, 163, 184, 0.55);
+  --sf-draft-text: #e2e8f0;
+  --sf-draft-dot: #94a3b8;
+  --sf-prelim-bg: rgba(245, 158, 11, 0.14);
+  --sf-prelim-border: rgba(251, 191, 36, 0.55);
+  --sf-prelim-text: #fde68a;
+  --sf-prelim-dot: #fbbf24;
+  --sf-final-bg: rgba(16, 185, 129, 0.14);
+  --sf-final-border: rgba(52, 211, 153, 0.55);
+  --sf-final-text: #a7f3d0;
+  --sf-final-dot: #34d399;
+}
+
+.root {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  color: var(--sf-text);
+  font-family: inherit;
+}
+
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.root button,
+.root input,
+.root select {
+  font-family: inherit;
+}
+
+/* ---------- Two stacked views with a height + cross-fade transition ---------- */
+
+.viewport {
+  position: relative;
+  width: 100%;
+  transition: height 950ms var(--sf-ease);
+  will-change: height;
+}
+
+.collapsedView {
+  position: relative;
+  width: 100%;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 950ms var(--sf-ease),
+    visibility 950ms var(--sf-ease);
+}
+
+.viewHidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.expandedView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 950ms var(--sf-ease),
+    visibility 950ms var(--sf-ease);
+}
+
+.expandedActive {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--sf-border);
+  border-radius: 1rem;
+  background: var(--sf-card-bg);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.cardCommand {
+  box-shadow: var(--sf-shadow-command);
+  user-select: none;
+}
+
+.cardRaised {
+  box-shadow: var(--sf-shadow-card);
+}
+
+/* ---------- Collapsed quick row ---------- */
+
+.quickRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  overflow-x: auto;
+}
+
+.quickFields {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 620px;
+}
+
+.segment {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex: 1;
+  min-width: 140px;
+  padding: 0 0.75rem;
+}
+
+.segmentFirst {
+  min-width: 160px;
+  padding-left: 0;
+}
+
+.segmentBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 1.75rem;
+  background: var(--sf-border);
+}
+
+.quickIcon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--sf-accent);
+  transform: translateY(3px);
+}
+
+/* Floating-label field */
+.floatGroup {
+  position: relative;
+  margin-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  border-bottom: 1px solid var(--sf-border);
+  transform: translateY(3px);
+  transition: border-color 200ms ease;
+}
+
+.segment:hover .floatGroup {
+  border-color: var(--sf-accent-line);
+}
+
+.floatInput {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--sf-input-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  outline: none;
+}
+
+.floatInput::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+.floatInput:focus,
+.floatInput:not(:placeholder-shown) {
+  padding-top: 0.85rem;
+}
+
+.floatLabel {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 10;
+  color: var(--sf-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  transition:
+    transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    top 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms ease;
+}
+
+.floatInput:focus ~ .floatLabel,
+.floatInput:not(:placeholder-shown) ~ .floatLabel {
+  top: -0.15rem;
+  transform: translateY(0);
+  font-weight: 700;
+  color: var(--sf-text-strong);
+}
+
+.floatInput:focus-visible {
+  outline: none;
+}
+
+.floatGroup:focus-within {
+  border-color: var(--sf-accent);
+}
+
+/* Date segments */
+.dateSegment {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding: 0 0.75rem;
+  width: fit-content;
+}
+
+.dateSegmentLast {
+  padding-right: 0.5rem;
+}
+
+.dateBody {
+  min-width: 0;
+  transform: translateY(3px);
+}
+
+.dateLabel {
+  display: block;
+  color: var(--sf-text-strong);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.dateUnderline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  margin-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  border-bottom: 1px solid var(--sf-border);
+  transition: border-color 200ms ease;
+}
+
+.dateSegment:hover .dateUnderline,
+.dateUnderline:focus-within {
+  border-color: var(--sf-accent-line);
+}
+
+.dateInput {
+  width: 88px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--sf-input-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  outline: none;
+}
+
+.dateCaret {
+  flex-shrink: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  color: var(--sf-accent);
+}
+
+/* Actions */
+.quickActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 0.5rem;
+}
+
+.textButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--sf-subtle);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.textButton:hover {
+  color: var(--sf-accent-strong);
+}
+
+.filtersButton,
+.ghostButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.5rem;
+  background: var(--sf-input-bg);
+  color: var(--sf-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: var(--sf-shadow-xs);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 120ms ease;
+}
+
+.filtersButton:hover,
+.ghostButton:hover {
+  background: var(--sf-surface-hover);
+}
+
+.filtersButton:active,
+.ghostButton:active {
+  transform: scale(0.95);
+}
+
+.ghostButton {
+  gap: 0.375rem;
+}
+
+.ghostButtonQuiet {
+  padding: 0.375rem 0.625rem;
+  font-weight: 500;
+  color: var(--sf-subtle);
+}
+
+.ghostButtonQuiet:hover {
+  color: var(--sf-accent-strong);
+}
+
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.25rem;
+  border-radius: 9999px;
+  background: var(--sf-accent);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  padding: 0.375rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--sf-accent-strong);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    transform 120ms ease;
+}
+
+.primaryButton:hover {
+  background: var(--sf-accent-deep);
+}
+
+.primaryButton:active {
+  transform: scale(0.97);
+}
+
+.buttonIconSmall,
+.buttonIconSmallMuted {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+}
+
+.buttonIconSmallMuted {
+  color: var(--sf-subtle);
+}
+
+.textButton .buttonIconSmall {
+  color: var(--sf-subtle);
+}
+
+.caretTiny {
+  width: 0.625rem;
+  height: 0.625rem;
+  flex-shrink: 0;
+  color: var(--sf-subtle);
+}
+
+.filtersButton:focus-visible,
+.ghostButton:focus-visible,
+.textButton:focus-visible,
+.primaryButton:focus-visible,
+.chip:focus-visible,
+.moreButton:focus-visible,
+.segmentButton:focus-visible,
+.statusButton:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Modalities ---------- */
+
+.modalityBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.modalityBarStrip {
+  padding: 0.625rem 1.25rem;
+  border-top: 1px solid var(--sf-border-soft);
+  background: var(--sf-strip-bg);
+}
+
+.modalityBarForm {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--sf-border-soft);
+}
+
+.modalityTitle {
+  flex-shrink: 0;
+  margin-right: 0.25rem;
+  color: var(--sf-subtle);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chipGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: 0.375rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 9999px;
+  background: var(--sf-input-bg);
+  color: var(--sf-text);
+  font-size: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.chip:hover {
+  background: var(--sf-surface-hover);
+  border-color: var(--sf-border-hover);
+  color: var(--sf-text-strong);
+}
+
+/* Declared after :hover so the selected look wins at equal specificity. */
+.chipActive,
+.chipActive:hover {
+  background: var(--sf-accent-strong);
+  border-color: var(--sf-accent-strong);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.chipActive:hover {
+  background: var(--sf-accent-deep);
+  border-color: var(--sf-accent-deep);
+  box-shadow: 0 2px 6px 0 var(--sf-accent-glow);
+}
+
+.chipIcon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.chipSeparator {
+  display: none;
+  width: 1px;
+  height: 1rem;
+  margin: 0 0.25rem;
+  background: var(--sf-border);
+}
+
+.moreButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--sf-accent-strong);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.moreButton:hover {
+  background: var(--sf-accent-soft);
+  color: var(--sf-accent-deep);
+}
+
+.moreIcon {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.modalityPopover {
+  position: absolute;
+  z-index: 1000;
+  display: grid;
+  width: min(17rem, calc(100vw - 2rem));
+  max-height: 15rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  overflow-y: auto;
+  padding: 0.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.75rem;
+  background: var(--sf-card-bg);
+  box-shadow: var(--sf-shadow-card);
+}
+
+.popoverChip {
+  justify-content: center;
+}
+
+/* ---------- Expanded form ---------- */
+
+.expandedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.col3 {
+  min-width: 0;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.formFieldFit {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 0.25rem;
+}
+
+.fieldLabel {
+  overflow: hidden;
+  color: var(--sf-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.control {
+  position: relative;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.75rem;
+  background: var(--sf-input-bg);
+  color: var(--sf-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background-color 300ms ease;
+}
+
+.input::placeholder {
+  color: var(--sf-muted);
+}
+
+.input:hover {
+  border-color: var(--sf-border-hover);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--sf-accent);
+  box-shadow: 0 0 0 1px var(--sf-accent);
+}
+
+.select {
+  padding-right: 2rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.dateControl {
+  padding-right: 1.75rem;
+  color: var(--sf-input-text);
+  cursor: pointer;
+}
+
+.leadIcon,
+.trailIcon {
+  position: absolute;
+  top: 0.625rem;
+  color: var(--sf-muted);
+  pointer-events: none;
+  transition: color 200ms ease;
+}
+
+.leadIcon {
+  left: 0.75rem;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.leadIconAccent {
+  color: var(--sf-accent);
+}
+
+.trailIcon {
+  right: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.control:focus-within .leadIcon {
+  color: var(--sf-accent);
+}
+
+/* Row 3 */
+.rowSplit {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.25rem;
+}
+
+.grow {
+  flex: 1;
+  min-width: min(280px, 100%);
+}
+
+.segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.75rem;
+  background: var(--sf-segment-bg);
+}
+
+.segmentButton {
+  padding: 0.25rem 0.625rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--sf-subtle);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.segmentButton:hover {
+  background: var(--sf-segment-active-bg);
+  color: var(--sf-accent-strong);
+}
+
+.segmentButtonActive,
+.segmentButtonActive:hover {
+  border-color: var(--sf-border);
+  background: var(--sf-segment-active-bg);
+  color: var(--sf-accent-strong);
+  font-weight: 600;
+  box-shadow: var(--sf-shadow-xs);
+}
+
+.statusGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.75rem;
+  background: var(--sf-input-bg);
+  color: var(--sf-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.statusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.375rem;
+  border-radius: 9999px;
+  background: currentColor;
+}
+
+/* Each status keeps its own dot colour and tints on hover/selected. */
+.statusReady {
+  --status-bg: var(--sf-ready-bg);
+  --status-border: var(--sf-ready-border);
+  --status-text: var(--sf-ready-text);
+  --status-dot: var(--sf-ready-dot);
+}
+
+.statusDraft {
+  --status-bg: var(--sf-draft-bg);
+  --status-border: var(--sf-draft-border);
+  --status-text: var(--sf-draft-text);
+  --status-dot: var(--sf-draft-dot);
+}
+
+.statusPreliminary {
+  --status-bg: var(--sf-prelim-bg);
+  --status-border: var(--sf-prelim-border);
+  --status-text: var(--sf-prelim-text);
+  --status-dot: var(--sf-prelim-dot);
+}
+
+.statusFinal {
+  --status-bg: var(--sf-final-bg);
+  --status-border: var(--sf-final-border);
+  --status-text: var(--sf-final-text);
+  --status-dot: var(--sf-final-dot);
+}
+
+.statusButton .statusDot {
+  background: var(--status-dot);
+}
+
+.statusButton:hover {
+  background: var(--status-bg);
+  color: var(--status-text);
+}
+
+.statusActive,
+.statusActive:hover {
+  border-color: var(--status-border);
+  background: var(--status-bg);
+  color: var(--status-text);
+  font-weight: 600;
+}
+
+/* Row 4 right-hand actions */
+.expandedActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 0.5rem;
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chipSeparator {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .expandedCard {
+    padding: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .rowSplit {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .modalityBarForm {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 1280px) {
+  .rowSplit {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport,
+  .collapsedView,
+  .expandedView,
+  .floatLabel {
+    transition-duration: 1ms;
+  }
+}

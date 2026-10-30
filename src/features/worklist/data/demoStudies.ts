@@ -1,0 +1,24 @@
+import type { WorklistStudy } from '../types'
+
+function demoDate(daysAgo: number, hour: number, minute: number): string {
+  const date = new Date()
+  date.setDate(date.getDate() - daysAgo)
+  date.setHours(hour, minute, 0, 0)
+  return date.toISOString()
+}
+
+/** Synthetic rows for layout development only. Never put patient data in this file. */
+export const demoStudies: WorklistStudy[] = [
+  { examId: 'DEMO-1001', patientId: 'DEMO-P001', patientName: 'Sample Patient Alpha', accessionNumber: 'DEMO-ACC-1001', acquiredDateTime: demoDate(0, 9, 42), gender: 'F', patientAge: 42, procedureDescription: 'CT Chest without contrast', reportStatus: 'Unread', referringPhysician: 'Demo Provider 01', modality: 'CT', assignedDoctor: 'Demo Reader 01', imageCount: 186 },
+  { examId: 'DEMO-1002', patientId: 'DEMO-P002', patientName: 'Sample Patient Bravo', accessionNumber: 'DEMO-ACC-1002', acquiredDateTime: demoDate(0, 9, 18), gender: 'M', patientAge: 57, procedureDescription: 'MRI Brain with and without contrast', reportStatus: 'In Progress', referringPhysician: 'Demo Provider 02', modality: 'MR', assignedDoctor: 'Demo Reader 02', imageCount: 324 },
+  { examId: 'DEMO-1003', patientId: 'DEMO-P003', patientName: 'Sample Patient Charlie', accessionNumber: 'DEMO-ACC-1003', acquiredDateTime: demoDate(0, 8, 56), gender: 'U', patientAge: 31, procedureDescription: 'Chest, two views', reportStatus: 'Reported', referringPhysician: 'Demo Provider 03', modality: 'XR', assignedDoctor: 'Demo Reader 01', imageCount: 2 },
+  { examId: 'DEMO-1004', patientId: 'DEMO-P004', patientName: 'Sample Patient Delta', accessionNumber: 'DEMO-ACC-1004', acquiredDateTime: demoDate(0, 8, 34), gender: 'F', patientAge: 68, procedureDescription: 'Ultrasound abdomen complete', reportStatus: 'Unread', referringPhysician: 'Demo Provider 02', modality: 'US', assignedDoctor: 'Demo Reader 03', imageCount: 42 },
+  { examId: 'DEMO-1005', patientId: 'DEMO-P005', patientName: 'Sample Patient Echo', accessionNumber: 'DEMO-ACC-1005', acquiredDateTime: demoDate(0, 8, 12), gender: 'M', patientAge: 49, procedureDescription: 'CT Head without contrast', reportStatus: 'In Progress', referringPhysician: 'Demo Provider 01', modality: 'CT', assignedDoctor: 'Demo Reader 01', imageCount: 128 },
+  { examId: 'DEMO-1006', patientId: 'DEMO-P006', patientName: 'Sample Patient Foxtrot', accessionNumber: 'DEMO-ACC-1006', acquiredDateTime: demoDate(0, 7, 48), gender: 'F', patientAge: 36, procedureDescription: 'Mammography screening bilateral', reportStatus: 'Unread', referringPhysician: 'Demo Provider 04', modality: 'MG', assignedDoctor: 'Demo Reader 02', imageCount: 4 },
+  { examId: 'DEMO-1007', patientId: 'DEMO-P007', patientName: 'Sample Patient Golf', accessionNumber: 'DEMO-ACC-1007', acquiredDateTime: demoDate(0, 7, 21), gender: 'M', patientAge: 73, procedureDescription: 'MRI Lumbar spine without contrast', reportStatus: 'Reported', referringPhysician: 'Demo Provider 03', modality: 'MR', assignedDoctor: 'Demo Reader 03', imageCount: 248 },
+  { examId: 'DEMO-1008', patientId: 'DEMO-P008', patientName: 'Sample Patient Hotel', accessionNumber: 'DEMO-ACC-1008', acquiredDateTime: demoDate(0, 6, 55), gender: 'F', patientAge: 24, procedureDescription: 'X-ray left ankle, three views', reportStatus: 'Unread', referringPhysician: 'Demo Provider 05', modality: 'XR', assignedDoctor: 'Demo Reader 01', imageCount: 3 },
+  { examId: 'DEMO-1009', patientId: 'DEMO-P009', patientName: 'Sample Patient India', accessionNumber: 'DEMO-ACC-1009', acquiredDateTime: demoDate(1, 17, 40), gender: 'M', patientAge: 61, procedureDescription: 'CT Abdomen and pelvis with contrast', reportStatus: 'In Progress', referringPhysician: 'Demo Provider 04', modality: 'CT', assignedDoctor: 'Demo Reader 02', imageCount: 512 },
+  { examId: 'DEMO-1010', patientId: 'DEMO-P010', patientName: 'Sample Patient Juliet', accessionNumber: 'DEMO-ACC-1010', acquiredDateTime: demoDate(1, 16, 22), gender: 'F', patientAge: 45, procedureDescription: 'Echocardiogram complete', reportStatus: 'Reported', referringPhysician: 'Demo Provider 01', modality: 'US', assignedDoctor: 'Demo Reader 03', imageCount: 68 },
+  { examId: 'DEMO-1011', patientId: 'DEMO-P011', patientName: 'Sample Patient Kilo', accessionNumber: 'DEMO-ACC-1011', acquiredDateTime: demoDate(1, 15, 10), gender: 'U', patientAge: 29, procedureDescription: 'CT Sinus without contrast', reportStatus: 'Unread', referringPhysician: 'Demo Provider 02', modality: 'CT', assignedDoctor: 'Demo Reader 01', imageCount: 94 },
+  { examId: 'DEMO-1012', patientId: 'DEMO-P012', patientName: 'Sample Patient Lima', accessionNumber: 'DEMO-ACC-1012', acquiredDateTime: demoDate(1, 14, 3), gender: 'M', patientAge: 52, procedureDescription: 'MRI Shoulder without contrast', reportStatus: 'Reported', referringPhysician: 'Demo Provider 05', modality: 'MR', assignedDoctor: 'Demo Reader 02', imageCount: 206 },
+]

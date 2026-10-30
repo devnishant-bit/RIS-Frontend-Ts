@@ -1,0 +1,5 @@
+.standalone {
+  min-height: 100vh;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: var(--color-page);
+}

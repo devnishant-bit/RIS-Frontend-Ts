@@ -1,0 +1,28 @@
+.errorPage {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: center;
+  gap: 0.8rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.retryButton {
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-accent);
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  padding: 0.7rem 1rem;
+}
