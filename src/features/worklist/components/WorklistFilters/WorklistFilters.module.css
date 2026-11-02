@@ -1,10 +1,3 @@
-/* ==========================================================================
-   SearchBar
-   Theme: data-theme="light" | "dark" is set on the root from the `theme` prop.
-   Every colour comes from the --sf-* variables below. To follow the app theme
-   system, map these to the tokens in styles/tokens.css and styles/themes.css.
-   ========================================================================== */
-
 .root {
   --sf-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 
@@ -13,7 +6,7 @@
   --sf-border-hover: #cbd5e1;
   --sf-border-soft: #f1f5f9;
   --sf-strip-bg: rgba(248, 250, 252, 0.5);
-  --sf-surface-hover: #f8fafc;
+  --sf-surface-hover: #f8fafb;
 
   --sf-text: #334155;
   --sf-text-strong: #0f172a;
@@ -22,12 +15,13 @@
   --sf-subtle: #64748b;
   --sf-label: #334155;
 
-  --sf-accent: #2563eb;
-  --sf-accent-strong: #1d4ed8;
-  --sf-accent-deep: #1e40af;
-  --sf-accent-soft: #eff6ff;
-  --sf-accent-line: #93c5fd;
-  --sf-accent-glow: rgba(29, 78, 216, 0.28);
+  --sf-accent: #2f4ca0;
+  --sf-accent-strong: #2f4ca0;
+  --sf-accent-deep: #243b80;
+  --sf-accent-soft: #eef1f9;
+  --sf-accent-line: #061746;
+  --sf-accent-glow: rgba(47, 76, 160, 0.35);
+  --sf-chip-border: #4e68ab; /* slight blue */
 
   --sf-input-bg: #ffffff;
   --sf-segment-bg: rgba(241, 245, 249, 0.9);
@@ -70,12 +64,13 @@
   --sf-subtle: #94a3b8;
   --sf-label: #cbd5e1;
 
-  --sf-accent: #3b82f6;
-  --sf-accent-strong: #2563eb;
-  --sf-accent-deep: #1d4ed8;
-  --sf-accent-soft: rgba(37, 99, 235, 0.18);
-  --sf-accent-line: #3b82f6;
-  --sf-accent-glow: rgba(59, 130, 246, 0.4);
+  --sf-accent: #5b78d0;
+  --sf-accent-strong: #2f4ca0;
+  --sf-accent-deep: #243b80;
+  --sf-accent-soft: rgba(47, 76, 160, 0.25);
+  --sf-accent-line: #5b78d0;
+  --sf-accent-glow: rgba(91, 120, 208, 0.4);
+  --sf-chip-border: rgba(143, 162, 216, 0.35);
 
   --sf-input-bg: #111c33;
   --sf-segment-bg: rgba(30, 41, 59, 0.7);
@@ -269,7 +264,7 @@
   background: transparent;
   color: var(--sf-input-text);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.25;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -372,7 +367,7 @@
   background: transparent;
   color: var(--sf-input-text);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.25;
   cursor: pointer;
   outline: none;
@@ -383,6 +378,173 @@
   width: 0.625rem;
   height: 0.625rem;
   color: var(--sf-accent);
+}
+
+/* ---------- Date range picker ---------- */
+
+.rangeValue {
+  min-width: 11.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--sf-input-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+
+.rangeValue:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 2px;
+}
+
+.rangeButton {
+  text-align: left;
+  font-size: 0.6875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rangeSep {
+  margin: 0 0.375rem;
+  color: var(--sf-muted);
+}
+
+.rangePlaceholder {
+  color: var(--sf-muted);
+}
+
+.rangePopover {
+  position: absolute;
+  z-index: 1000;
+  width: min(18rem, calc(100vw - 2rem));
+  padding: 0.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.75rem;
+  background: var(--sf-card-bg);
+  box-shadow: var(--sf-shadow-card);
+}
+
+.calHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.calTitle {
+  color: var(--sf-text-strong);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.calNav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.5rem;
+  background: var(--sf-input-bg);
+  color: var(--sf-subtle);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 120ms ease;
+}
+
+.calNav svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.calNav:hover {
+  background: var(--sf-accent-soft);
+  color: var(--sf-accent-strong);
+}
+
+.calNav:active {
+  transform: scale(0.95);
+}
+
+.calWeekdays,
+.calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.calWeekday {
+  padding: 0.25rem 0;
+  color: var(--sf-muted);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.calDay {
+  height: 2rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--sf-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.calDay:hover {
+  background: var(--sf-accent-soft);
+  color: var(--sf-accent-strong);
+}
+
+.calDayToday {
+  box-shadow: inset 0 0 0 1px var(--sf-accent-line);
+}
+
+.calDayInRange {
+  border-radius: 0;
+  background: var(--sf-accent-soft);
+  color: var(--sf-accent-strong);
+}
+
+/* Declared after :hover and in-range so the start/end look wins. */
+.calDayEdge,
+.calDayEdge:hover {
+  border-radius: 0.5rem;
+  background: var(--sf-accent-strong);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.calDayEdge:hover {
+  background: var(--sf-accent-deep);
+}
+
+.calNav:focus-visible,
+.calDay:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 2px;
+}
+
+.calHint {
+  margin: 0.5rem 0 0;
+  color: var(--sf-subtle);
+  font-size: 0.6875rem;
+  text-align: center;
 }
 
 /* Actions */
@@ -578,7 +740,7 @@
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem 0.75rem;
-  border: 1px solid var(--sf-border);
+  border: 1px solid var(--sf-chip-border);
   border-radius: 9999px;
   background: var(--sf-input-bg);
   color: var(--sf-text);
@@ -594,7 +756,7 @@
 
 .chip:hover {
   background: var(--sf-surface-hover);
-  border-color: var(--sf-border-hover);
+  border-color: var(--sf-accent-line);
   color: var(--sf-text-strong);
 }
 
@@ -951,6 +1113,10 @@
     padding: 1.5rem;
   }
 
+  .spanTwo {
+    grid-column: span 2;
+  }
+
   .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -977,5 +1143,49 @@
   .expandedView,
   .floatLabel {
     transition-duration: 1ms;
+  }
+}
+
+.mobileTriggerWrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobileTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--sf-border);
+  border-radius: 0.75rem;
+  background: var(--sf-card-bg);
+  color: var(--sf-accent);
+  box-shadow: var(--sf-shadow-command);
+  cursor: pointer;
+  transition: transform 120ms ease, background-color 200ms ease;
+}
+
+.mobileTrigger:hover { background: var(--sf-accent-soft); }
+.mobileTrigger:active { transform: scale(0.95); }
+.mobileTrigger:focus-visible { outline: 2px solid var(--sf-accent); outline-offset: 2px; }
+
+.mobileTriggerIcon { width: 1.125rem; height: 1.125rem; }
+
+.mobileBadge {
+  position: absolute;
+  top: -0.375rem;
+  right: -0.375rem;
+}
+
+/* Mobile: the expanded form's action row wraps cleanly */
+@media (max-width: 640px) {
+  .expandedActions {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: flex-end;
   }
 }

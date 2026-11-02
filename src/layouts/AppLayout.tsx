@@ -5,9 +5,11 @@ import Sidebar from './components/Sidebar/Sidebar'
 import styles from './AppLayout.module.css'
 import { useAuth } from '../shared/auth/useAuth'
 import { routePaths } from '../routes/routePaths'
+import { useTheme } from '@/shared/Theme/ThemeProvider'
 
 export function AppLayout() {
   const { user, logout } = useAuth()
+  const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches,
@@ -17,12 +19,15 @@ export function AppLayout() {
     ? `${styles.body} ${styles.withSidebar} ${sidebarCollapsed ? styles.sidebarCollapsed : styles.sidebarExpanded}`
     : `${styles.body} ${styles.withoutSidebar}`
 
+
   return (
     <div className={styles.shell}>
       {/* <Header /> */}
       <div className={bodyClassName}>
         {showSidebar && (
           <Sidebar
+            theme={theme}
+            onToggleTheme={toggleTheme}
             user={{
               name: user?.displayName ?? 'Demo User',
               role: user?.isAdmin ? 'Administrator' : 'User',
