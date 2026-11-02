@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { LoginPage } from '../features/auth/pages/LoginPage'
 import { ForbiddenPage } from '../features/auth/pages/ForbiddenPage'
 import { WorklistPage } from '../features/worklist/pages/WorklistPage'
+import { TatReportPage } from '../features/reports/pages/TatReportPage'
+import { InactiveReportPage } from '../features/reports/pages/InactiveReportPage'
 import { DemoFeaturePage } from '../shared/ui/DemoFeaturePage'
 import { useAuth } from '../shared/auth/useAuth'
 import type { Permission } from '../features/auth/types'
@@ -65,6 +67,8 @@ function MissingRoute() {
 
 function renderAppPage(route: PageRoute) {
   if (route.path === routePaths.worklist) return <WorklistPage />
+  if (route.path === routePaths.tatReport) return <TatReportPage />
+  if (route.path === routePaths.inactiveReport) return <InactiveReportPage />
   return <DemoFeaturePage title={route.title} parentPath={route.path} description={`The ${route.title} page from the parent application will be built here.`} sections={routePageSections[route.path]} />
 }
 
@@ -97,7 +101,7 @@ export function AppRouter() {
       <Route element={<StandaloneLayout />}>
         <Route path={routePaths.worklistWindow} element={<DemoFeaturePage title="Worklist Window" parentPath={routePaths.worklistWindow} description="The standalone Worklist Window page from the parent app will be built here." sections={routePageSections[routePaths.worklistWindow]} />} />
         <Route path={routePaths.teleRadio} element={<DemoFeaturePage title="Tele-radiology Worklist" parentPath={routePaths.teleRadio} description="The standalone tele-radiology page from the parent app will be built here." sections={routePageSections[routePaths.teleRadio]} />} />
-        <Route path={routePaths.teleClientExt} element={<DemoFeaturePage title="Tele-client Extension" parentPath={routePaths.teleClientExt} description="The standalone client extension page from the parent app will be built here." sections={routePageSections[routePaths.teleClientExt]} />} />
+        <Route path={routePaths.teleClientExt} element={<DemoFeaturePage title="Tele-client Extension" parentPath={routePaths.teleClientExt} description="The standalone client extension from the parent app will be built here." sections={routePageSections[routePaths.teleClientExt]} />} />
         <Route path={routePaths.coordinatorDashboard} element={<DemoFeaturePage title="Coordinator Dashboard" parentPath={routePaths.coordinatorDashboard} description="The standalone coordinator dashboard from the parent app will be built here." sections={routePageSections[routePaths.coordinatorDashboard]} />} />
         <Route path={routePaths.doctorPoolSetup} element={<DemoFeaturePage title="Doctor Pool Setup" parentPath={routePaths.doctorPoolSetup} description="The standalone doctor pool page from the parent app will be built here." sections={routePageSections[routePaths.doctorPoolSetup]} />} />
       </Route>

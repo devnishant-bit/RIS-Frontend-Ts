@@ -1,0 +1,1103 @@
+.inactiveReportContainer {
+  --ink: #101b2d;
+  --navy-900: #0b2545;
+  --navy-800: #102d54;
+  --navy-700: #14365e;
+  --accent: #2568a8;
+  --accent-tint: #eaf1f8;
+
+  --canvas: #f4f6fa;
+  --surface: #ffffff;
+
+  --border: #dfe5ec;   
+  --border-strong: #c7d1db;  
+
+  --muted: #5b6b7c;
+  --muted-soft: #8a97a6;
+
+  --success: #1b8a5a;
+  --success-bg: #e5f5ed;
+
+  --danger: #b23b3b;
+  --danger-bg: #fbeaea;
+
+  --pending: #b8860b;
+  --pending-bg: #fbf3e2;
+
+  --excel-green: #1f7a4d;
+  --pdf-red: #c0392b;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --shadow:
+    0 2px 4px rgba(11, 37, 69, 0.07),
+    0 20px 40px -14px rgba(11, 37, 69, 0.22);
+
+  --shadow-sm:
+    0 1px 2px rgba(11, 37, 69, 0.07),
+    0 6px 14px -6px rgba(11, 37, 69, 0.14);
+
+  width: 100%;
+  min-height: auto;
+
+  padding: 18px 24px 50px;
+
+  box-sizing: border-box;
+
+  color: var(--ink);
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf5fa 0%,
+      #f5f9fc 48%,
+      #edf4f8 100%
+    );
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+.inactiveReportContainer *,
+.inactiveReportContainer *::before,
+.inactiveReportContainer *::after {
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   PAGE HEADING
+   ========================================================================== */
+
+.pageHeading {
+  position: relative;
+
+  padding: 2px 0 2px 14px;
+
+  margin-bottom: 12px;
+
+  text-align: left;
+}
+
+.pageHeading::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 3px;
+
+  border-radius: 3px;
+
+  background: var(--accent);
+}
+
+.pageHeading h2 {
+  margin: 0;
+
+  color: var(--navy-900);
+
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+
+.pageHeading p {
+  margin: 4px 0 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   REPORT CONTAINER
+   ========================================================================== */
+
+.inactiveReportPrintContainer {
+  width: 100%;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow);
+
+  margin-bottom: 16px;
+
+  position: relative;
+}
+
+.inactiveReportPrintContainer::before {
+  display: none;
+}
+
+
+/* ==========================================================================
+   REPORT HEADER (currently unused in JS — kept for future use)
+   ========================================================================== */
+
+.reportHeader {
+  padding: 16px 20px 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  background: var(--surface);
+
+  border-bottom: 1px solid var(--border);
+}
+
+.reportHeaderText {
+  min-width: 0;
+
+  text-align: left;
+}
+
+.reportHeader h2 {
+  margin: 0;
+
+  color: var(--navy-900);
+
+  font-size: 20px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.015em;
+}
+
+.reportSubtitle {
+  margin-top: 3px;
+
+  color: var(--muted-soft);
+
+  font-size: 11.5px;
+
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   ACTION BUTTONS
+   ========================================================================== */
+
+.inactiveReportActions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+}
+
+.inactiveReportPrint,
+.inactiveReportExportExcel,
+.inactiveReportExportPdf {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.05s ease,
+    box-shadow 0.15s ease;
+}
+
+.inactiveReportPrint svg,
+.inactiveReportExportExcel svg,
+.inactiveReportExportPdf svg {
+  width: 15px;
+  height: 15px;
+}
+
+
+/* Print */
+
+.inactiveReportPrint {
+  color: var(--navy-900);
+
+  background: var(--accent-tint);
+
+  border: 1px solid #cddaea;
+}
+
+.inactiveReportPrint:hover {
+  color: #ffffff;
+
+  background: var(--navy-900);
+
+  border-color: var(--navy-900);
+
+  transform: translateY(-1px);
+}
+
+
+/* Excel */
+
+.inactiveReportExportExcel {
+  color: var(--excel-green);
+
+  background: var(--success-bg);
+
+  border: 1px solid #bfe3d1;
+}
+
+.inactiveReportExportExcel:hover {
+  color: #ffffff;
+
+  background: var(--excel-green);
+
+  border-color: var(--excel-green);
+
+  transform: translateY(-1px);
+}
+
+
+/* PDF */
+
+.inactiveReportExportPdf {
+  color: var(--pdf-red);
+
+  background: var(--danger-bg);
+
+  border: 1px solid #f0c6c6;
+}
+
+.inactiveReportExportPdf:hover {
+  color: #ffffff;
+
+  background: var(--pdf-red);
+
+  border-color: var(--pdf-red);
+
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   FILTER CARD
+   ========================================================================== */
+
+.inactiveReportFilters {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 14px;
+
+  padding: 14px 20px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow-sm);
+
+  margin-bottom: 16px;
+}
+
+.filterAndActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.filterAndActions .inactiveReportFilters {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.inactiveReportFilterGroup {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  flex: 1;
+}
+
+.inactiveReportLabel {
+  display: block;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 11.5px;
+
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   INPUTS
+   ========================================================================== */
+
+.inactiveReportFilters input[type="date"],
+.inactiveReportFilters input[type="text"] {
+  width: 100% !important;
+
+  height: 38px !important;
+
+  padding: 0 11px !important;
+
+  margin: 0 !important;
+
+  border: 1px solid var(--border) !important;
+
+  border-radius: var(--radius-sm) !important;
+
+  outline: none !important;
+
+  background: var(--canvas) !important;
+
+  color: var(--ink) !important;
+
+  font-family: inherit !important;
+
+  font-size: 13px !important;
+
+  font-weight: 500;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.inactiveReportFilters input[type="date"]:hover,
+.inactiveReportFilters input[type="text"]:hover {
+  border-color: var(--border-strong) !important;
+
+  background: #ffffff !important;
+}
+
+.inactiveReportFilters input[type="date"]:focus,
+.inactiveReportFilters input[type="text"]:focus {
+  border-color: var(--accent) !important;
+
+  background: #ffffff !important;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 104, 168, 0.12) !important;
+}
+
+.inactiveReportFilters input::placeholder {
+  color: var(--muted-soft);
+}
+
+.inactiveReportFilters input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+
+  opacity: 0.65;
+}
+
+
+/* ==========================================================================
+   SEARCH BUTTON
+   ========================================================================== */
+
+.inactiveReportSearch {
+  flex: 0 0 125px;
+}
+
+button.inactiveReportSearch {
+  width: 125px;
+
+  height: 38px;
+
+  padding: 0 16px;
+
+  border: none;
+
+  border-radius: var(--radius-sm);
+
+  background: var(--navy-900);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 8px rgba(11, 37, 69, 0.18);
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+button.inactiveReportSearch:hover {
+  background: var(--navy-800);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 12px rgba(11, 37, 69, 0.24);
+}
+
+button.inactiveReportSearch:active {
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   TABLE WRAPPER
+   ========================================================================== */
+
+.inactiveReportTableHeaderContainer {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.inactiveReportTableBodyContainer {
+  width: 100%;
+
+  max-height: calc(100vh - 300px);
+
+  overflow-x: auto;
+  overflow-y: auto;
+
+  padding: 0;
+}
+
+.inactiveReportTable {
+  min-width: 1050px;
+}
+
+.inactiveReportTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.inactiveReportTableBodyContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.inactiveReportTableBodyContainer::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+.inactiveReportTableBodyContainer::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+}
+
+
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+
+.inactiveReportTable {
+  width: 100%;
+
+  min-width: 0;
+
+  table-layout: fixed;
+
+  border-collapse: collapse;
+
+  font-size: 12.5px;
+
+  color: var(--ink);
+}
+
+
+/* ==========================================================================
+   TABLE HEADER
+   ========================================================================== */
+
+.inactiveReportTable thead th {
+  padding: 11px 7px;
+
+  background: var(--navy-700);
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.01em;
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  border-right: none;
+
+  border-bottom: 2px solid var(--accent);
+}
+
+.inactiveReportTable thead th:hover {
+  background: #081a33;
+}
+
+.inactiveReportTable thead th:first-child {
+  padding-left: 10px;
+}
+
+.inactiveReportTable thead th:last-child {
+  padding-right: 10px;
+}
+
+
+/* ==========================================================================
+   TABLE BODY
+   ========================================================================== */
+
+.inactiveReportTable tbody tr {
+  background: #ffffff;
+
+  transition: background 0.12s ease;
+}
+
+.inactiveReportTable tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.inactiveReportTable tbody tr:hover {
+  background: var(--accent-tint);
+}
+
+.inactiveReportTable tbody td {
+  padding: 10px 9px;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--ink);
+
+  font-size: 12.5px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  vertical-align: middle;
+}
+
+.inactiveReportTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* ==========================================================================
+   COLUMN ALIGNMENT
+   ========================================================================== */
+
+/* Serial number */
+
+.inactiveReportTable th:first-child,
+.inactiveReportTable td:first-child {
+  width: 55px;
+
+  text-align: center;
+}
+
+
+/* Exam ID */
+
+.inactiveReportTable th:nth-child(2),
+.inactiveReportTable td:nth-child(2) {
+  text-align: center;
+}
+
+
+/* Age */
+
+.inactiveReportTable th:nth-child(5),
+.inactiveReportTable td:nth-child(5) {
+  text-align: center;
+}
+
+
+/* Gender */
+
+.inactiveReportTable th:nth-child(6),
+.inactiveReportTable td:nth-child(6) {
+  text-align: center;
+}
+
+
+/* Image count */
+
+.inactiveReportTable th:nth-child(7),
+.inactiveReportTable td:nth-child(7) {
+  text-align: center;
+}
+
+
+/* Active */
+
+.inactiveReportTable th:nth-child(10),
+.inactiveReportTable td:nth-child(10) {
+  text-align: center;
+}
+
+
+/* Date */
+
+.inactiveReportTable th:nth-child(11),
+.inactiveReportTable td:nth-child(11) {
+  text-align: center;
+}
+
+
+/* ========================================================================== 
+   COLUMN WIDTHS
+   ========================================================================== */
+
+/* Serial Number */
+.inactiveReportTable th:nth-child(1),
+.inactiveReportTable td:nth-child(1) {
+  width: 55px;
+}
+
+/* Exam ID */
+.inactiveReportTable th:nth-child(2),
+.inactiveReportTable td:nth-child(2) {
+  width: 85px;
+}
+
+/* Patient ID - give more space */
+.inactiveReportTable th:nth-child(3),
+.inactiveReportTable td:nth-child(3) {
+  width: 150px;
+}
+
+/* Patient Name */
+.inactiveReportTable th:nth-child(4),
+.inactiveReportTable td:nth-child(4) {
+  width: 130px;
+}
+
+/* Age - reduce space */
+.inactiveReportTable th:nth-child(5),
+.inactiveReportTable td:nth-child(5) {
+  width: 70px;
+}
+
+/* Gender - reduce space */
+.inactiveReportTable th:nth-child(6),
+.inactiveReportTable td:nth-child(6) {
+  width: 70px;
+}
+
+/* Image Count */
+.inactiveReportTable th:nth-child(7),
+.inactiveReportTable td:nth-child(7) {
+  width: 100px;
+}
+
+/* Notes */
+.inactiveReportTable th:nth-child(8),
+.inactiveReportTable td:nth-child(8) {
+  width: 100px;
+}
+
+/* Username - reduce space */
+.inactiveReportTable th:nth-child(9),
+.inactiveReportTable td:nth-child(9) {
+  width: 90px;
+}
+
+/* Active - reduce space */
+.inactiveReportTable th:nth-child(10),
+.inactiveReportTable td:nth-child(10) {
+  width: 70px;
+}
+
+/* Date */
+.inactiveReportTable th:nth-child(11),
+.inactiveReportTable td:nth-child(11) {
+  width: 105px;
+}
+
+
+/* ==========================================================================
+   ACTIVE / INACTIVE STATUS
+   ========================================================================== */
+
+.statusActive,
+.statusInactive {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 48px;
+
+  padding: 3px 7px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: capitalize;
+}
+
+.statusActive {
+  color: var(--success);
+
+  background: var(--success-bg);
+}
+
+.statusInactive {
+  color: var(--danger);
+
+  background: var(--danger-bg);
+}
+
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.emptyState {
+  padding: 40px 16px !important;
+
+  text-align: center !important;
+
+  color: var(--muted-soft) !important;
+
+  font-size: 13px !important;
+
+  font-weight: 500 !important;
+
+  background: #ffffff !important;
+}
+
+.emptyStateIcon {
+  width: 36px;
+
+  height: 36px;
+
+  margin: 0 auto 8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--accent-tint);
+
+  color: var(--muted);
+
+  font-size: 16px;
+}
+
+
+/* ==========================================================================
+   LOADING
+   ========================================================================== */
+
+.inactiveReportSpinnerContainer {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  min-height: 80px;
+}
+
+.inactiveReportLoadingSpinner {
+  width: 28px;
+
+  height: 28px;
+
+  border: 3px solid var(--border);
+
+  border-top-color: var(--accent);
+
+  border-radius: 50%;
+
+  animation: inactiveReportSpin 0.75s linear infinite;
+}
+
+@keyframes inactiveReportSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================================================
+   FOCUS
+   ========================================================================== */
+
+.inactiveReportFilters button:focus-visible,
+.inactiveReportFilters input:focus-visible,
+.inactiveReportActions button:focus-visible {
+  outline: 3px solid rgba(37, 104, 168, 0.18);
+
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .inactiveReportFilters {
+    flex-wrap: wrap;
+  }
+
+  .inactiveReportFilterGroup {
+    flex: 1 1 180px;
+  }
+
+  .inactiveReportSearch {
+    flex: 0 0 120px;
+  }
+
+  button.inactiveReportSearch {
+    width: 120px;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .inactiveReportContainer {
+    padding: 14px 12px 25px;
+  }
+
+  .pageHeading h2 {
+    font-size: 19px;
+  }
+
+  .inactiveReportFilters {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+
+    padding: 14px 16px;
+  }
+
+  .filterAndActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .filterAndActions .inactiveReportActions {
+    justify-content: flex-end;
+    padding-right: 4px;
+  }
+
+  .inactiveReportFilterGroup {
+    width: 100%;
+
+    flex: none;
+  }
+
+  .inactiveReportSearch,
+  button.inactiveReportSearch {
+    width: 100%;
+
+    flex: none;
+  }
+
+  .reportHeader {
+    padding: 14px 16px;
+  }
+
+  .reportHeader h2 {
+    font-size: 18px;
+  }
+
+  .inactiveReportTable {
+    font-size: 11.5px;
+  }
+
+  .inactiveReportTable thead th {
+    padding: 7px 4px;
+
+    font-size: 10.5px;
+  }
+
+  .inactiveReportTable tbody td {
+    padding: 7px 4px;
+
+    font-size: 11.5px;
+  }
+}
+
+
+/* ==========================================================================
+   PRINT
+   ========================================================================== */
+
+@media print {
+  .inactiveReportContainer {
+    min-height: auto;
+
+    padding: 0;
+
+    background: #ffffff;
+  }
+
+  .inactiveReportFilters,
+  .inactiveReportActions {
+    display: none !important;
+  }
+
+  .inactiveReportPrintContainer {
+    border: none;
+
+    box-shadow: none;
+
+    border-radius: 0;
+  }
+
+
+  .inactiveReportTableHeaderContainer,
+  .inactiveReportTableBodyContainer {
+    overflow: visible;
+  }
+
+  .inactiveReportTable {
+    min-width: 0;
+
+    table-layout: auto;
+  }
+
+  .inactiveReportTable thead th {
+    position: static;
+
+    background: var(--navy-900) !important;
+
+    color: #ffffff !important;
+
+    -webkit-print-color-adjust: exact;
+
+    print-color-adjust: exact;
+  }
+
+  .inactiveReportTable tbody tr:hover {
+    background: transparent;
+
+    box-shadow: none;
+  }
+
+  inactiveReportContainer {
+    min-height: auto;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .inactiveReportFilters,
+  .inactiveReportActions {
+    display: none !important;
+  }
+
+  .inactiveReportPrintContainer {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* Global body * { visibility: hidden } rule (from other report pages'
+     stylesheets) hides this page too — explicitly re-reveal it here. */
+  .inactiveReportContainer,
+  .inactiveReportContainer * {
+    visibility: visible;
+  }
+ 
+  .inactiveReportContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .inactiveReportTableHeaderContainer,
+  .inactiveReportTableBodyContainer {
+    overflow: visible;
+  }
+
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .inactiveReportContainer *,
+  .inactiveReportContainer *::before,
+  .inactiveReportContainer *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}

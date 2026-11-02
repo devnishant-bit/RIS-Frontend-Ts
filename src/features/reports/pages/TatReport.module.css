@@ -1,0 +1,443 @@
+.tatReportContainer {
+  --ink: #101b2d;
+  --navy-900: #0b2545;
+  --navy-800: #102d54;
+  --navy-700: #14365e;
+  --accent: #2568a8;
+  --accent-tint: #eaf1f8;
+
+  --canvas: #f4f6fa;
+  --surface: #ffffff;
+
+  --border: #dfe5ec;
+  --border-strong: #c7d1db;
+
+  --muted: #5b6b7c;
+  --muted-soft: #8a97a6;
+
+  --danger: #b23b3b;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --shadow:
+    0 2px 4px rgba(11, 37, 69, 0.07),
+    0 20px 40px -14px rgba(11, 37, 69, 0.22);
+
+  --shadow-sm:
+    0 1px 2px rgba(11, 37, 69, 0.07),
+    0 6px 14px -6px rgba(11, 37, 69, 0.14);
+
+  width: 100%;
+  min-height: auto;
+  padding: 18px 24px 50px;
+  box-sizing: border-box;
+  color: var(--ink);
+
+  background: linear-gradient(135deg, #edf5fa 0%, #f5f9fc 48%, #edf4f8 100%);
+
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Arial, sans-serif;
+}
+
+.tatReportContainer *,
+.tatReportContainer *::before,
+.tatReportContainer *::after {
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   PAGE HEADING
+   ========================================================================== */
+
+.pageHeading {
+  position: relative;
+  padding: 2px 0 2px 14px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.pageHeading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.pageHeading h1 {
+  margin: 0;
+  color: var(--navy-900);
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+
+.reportSubtitle {
+  margin-top: 3px;
+  color: var(--muted-soft);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   FILTER CARD
+   ========================================================================== */
+
+.tatReportFilters {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+}
+
+.filterGroup {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.filterLabel {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.tatReportFilters input[type="date"],
+.tatReportFilters input[type="text"] {
+  width: 100%;
+  height: 38px;
+  padding: 0 11px;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.tatReportFilters input[type="date"]:hover,
+.tatReportFilters input[type="text"]:hover {
+  border-color: var(--border-strong);
+  background: #ffffff;
+}
+
+.tatReportFilters input[type="date"]:focus,
+.tatReportFilters input[type="text"]:focus {
+  border-color: var(--accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 104, 168, 0.12);
+}
+
+.tatReportFilters input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.65;
+}
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.filterButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.searchButton,
+.clearButton {
+  width: 110px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.searchButton {
+  border: 1px solid var(--navy-900);
+  background: var(--navy-900);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(11, 37, 69, 0.18);
+}
+
+.searchButton:hover:not(:disabled) {
+  background: var(--navy-800);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(11, 37, 69, 0.24);
+}
+
+.searchButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.clearButton {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--navy-900);
+}
+
+.clearButton:hover:not(:disabled) {
+  background: var(--accent-tint);
+  border-color: var(--accent);
+}
+
+.searchButton:disabled,
+.clearButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* ==========================================================================
+   RESULTS CARD + TABLE
+   ========================================================================== */
+
+.tatReportResults {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.tableScroll {
+  width: 100%;
+  max-height: calc(100vh - 300px);
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.tableScroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.tableScroll::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+.tableScroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+}
+
+.tatReportTable {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+/* Header (sticky so it stays visible while the body scrolls) */
+
+.tatReportTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 11px 9px;
+  background: var(--navy-700);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  text-align: left;
+  white-space: normal; /* long headings wrap onto two lines */
+  border-bottom: 2px solid var(--accent);
+}
+
+.tatReportTable thead th:first-child {
+  padding-left: 10px;
+}
+
+.tatReportTable thead th:last-child {
+  padding-right: 10px;
+}
+
+/* Body */
+
+.tatReportTable tbody tr {
+  background: #ffffff;
+  transition: background 0.12s ease;
+}
+
+.tatReportTable tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.tatReportTable tbody tr:hover {
+  background: var(--accent-tint);
+}
+
+.tatReportTable tbody td {
+  padding: 10px 9px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.tatReportTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cellCenter {
+  text-align: center !important;
+}
+
+/* TAT value: bold red, as in the Excel sample */
+
+.tatValue {
+  color: var(--danger) !important;
+  font-weight: 700 !important;
+}
+
+
+/* ==========================================================================
+   EMPTY / ERROR / LOADING
+   ========================================================================== */
+
+.tatReportTable tbody td.emptyState {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted-soft);
+  font-size: 13px;
+  font-weight: 500;
+  background: #ffffff;
+  white-space: normal;
+}
+
+.tatReportTable tbody td.errorState {
+  color: var(--danger);
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
+
+.loadingSpinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: tatReportSpin 0.75s linear infinite;
+}
+
+@keyframes tatReportSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================================================
+   FOCUS
+   ========================================================================== */
+
+.tatReportFilters button:focus-visible,
+.tatReportFilters input:focus-visible {
+  outline: 3px solid rgba(37, 104, 168, 0.18);
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .tatReportFilters {
+    flex-wrap: wrap;
+  }
+
+  .filterGroup {
+    flex: 1 1 180px;
+  }
+}
+
+@media (max-width: 700px) {
+  .tatReportContainer {
+    padding: 14px 12px 25px;
+  }
+
+  .pageHeading h1 {
+    font-size: 19px;
+  }
+
+  .tatReportFilters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .filterGroup {
+    width: 100%;
+    flex: none;
+  }
+
+  .filterButtons {
+    width: 100%;
+  }
+
+  .searchButton,
+  .clearButton {
+    flex: 1;
+    width: auto;
+  }
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tatReportContainer *,
+  .tatReportContainer *::before,
+  .tatReportContainer *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

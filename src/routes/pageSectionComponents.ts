@@ -14,7 +14,6 @@ import * as scheduling from '../features/scheduling/components'
 import * as settings from '../features/settings/components'
 import * as teleradiology from '../features/teleradiology/components'
 import * as users from '../features/users/components'
-import * as worklist from '../features/worklist/components'
 
 export const pageSectionComponents: Record<string, ComponentType<{ section: PageSectionSpec }>> = {
   ...coordination,
@@ -31,6 +30,5 @@ export const pageSectionComponents: Record<string, ComponentType<{ section: Page
   ...settings,
   ...teleradiology,
   ...users,
-  ...worklist,
 }
 
