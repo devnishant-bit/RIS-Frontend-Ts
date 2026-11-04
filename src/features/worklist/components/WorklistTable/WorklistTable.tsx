@@ -261,7 +261,7 @@ export default function WorklistTable({
                 const initials = initialsOf(row.patientName);
 
                 return (
-                  <tr key={row.examid} style={{ animationDelay: `${Math.min(index, 12) * 60}ms` }}>
+                  <tr key={row.examid} data-modality={getModalityKey(row.study)} style={{ animationDelay: `${Math.min(index, 12) * 60}ms` }}>
                     <td className={styles.actionCell} data-label="Action">
                       <div className={styles.actions}>
                         <button title="View" onClick={() => onView?.(row)}><FaEye /></button>

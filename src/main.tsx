@@ -5,6 +5,7 @@ import { App } from './app/App'
 import { AppErrorBoundary } from './app/errors/AppErrorBoundary'
 import { AppProviders } from './app/providers/AppProviders'
 import { PathTracker } from './shared/navigation/PathTracker'
+import { ThemeProvider } from './shared/Theme/ThemeProvider'
 import './styles/global.css'
 
 const rootElement = document.getElementById('root')
@@ -15,13 +16,15 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <AppErrorBoundary>
-      <AppProviders>
-        <BrowserRouter>
-          <PathTracker />
-          <App />
-        </BrowserRouter>
-      </AppProviders>
-    </AppErrorBoundary>
+    <ThemeProvider>
+      <AppErrorBoundary>
+        <AppProviders>
+          <BrowserRouter>
+            <PathTracker />
+            <App />
+          </BrowserRouter>
+        </AppProviders>
+      </AppErrorBoundary>
+    </ThemeProvider>
   </StrictMode>,
 )

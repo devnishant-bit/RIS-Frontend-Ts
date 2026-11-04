@@ -1,39 +1,31 @@
-import { Component, type ErrorInfo, type PropsWithChildren, type ReactNode } from 'react'
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
+import type { PropsWithChildren } from 'react'
 import styles from './AppErrorBoundary.module.css'
 
-interface AppErrorBoundaryState {
-  hasError: boolean
+function ErrorFallback({ resetErrorBoundary }: FallbackProps) {
+  return (
+    <main className={styles.errorPage} role="alert">
+      <p className={styles.eyebrow}>Application error</p>
+      <h1>This page could not be displayed</h1>
+      <p>Refresh the page. If the problem continues, contact your administrator.</p>
+      <button className={styles.retryButton} onClick={resetErrorBoundary}>
+        Refresh application
+      </button>
+    </main>
+  )
 }
 
-export class AppErrorBoundary extends Component<
-  PropsWithChildren,
-  AppErrorBoundaryState
-> {
-  state: AppErrorBoundaryState = { hasError: false }
-
-  static getDerivedStateFromError(): AppErrorBoundaryState {
-    return { hasError: true }
-  }
-
-  componentDidCatch(error: Error, info: ErrorInfo) {
-    // Replace this with the approved application monitoring service later.
-    console.error('Unhandled application rendering error', error, info.componentStack)
-  }
-
-  render(): ReactNode {
-    if (this.state.hasError) {
-      return (
-        <main className={styles.errorPage} role="alert">
-          <p className={styles.eyebrow}>Application error</p>
-          <h1>This page could not be displayed</h1>
-          <p>Refresh the page. If the problem continues, contact your administrator.</p>
-          <button className={styles.retryButton} onClick={() => window.location.reload()}>
-            Refresh application
-          </button>
-        </main>
-      )
-    }
-
-    return this.props.children
-  }
+export function AppErrorBoundary({ children }: PropsWithChildren) {
+  return (
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onError={(error, info) => {
+        // Replace this with the approved application monitoring service later.
+        console.error('Unhandled application rendering error', error, info.componentStack)
+      }}
+      onReset={() => window.location.reload()}
+    >
+      {children}
+    </ErrorBoundary>
+  )
 }

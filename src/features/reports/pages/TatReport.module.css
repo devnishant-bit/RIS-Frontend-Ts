@@ -30,14 +30,14 @@
 
   width: 100%;
   min-height: auto;
-  padding: 18px 24px 50px;
+  padding: 0px 0px 0px;
   box-sizing: border-box;
   color: var(--ink);
 
   background: linear-gradient(135deg, #edf5fa 0%, #f5f9fc 48%, #edf4f8 100%);
 
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Arial, sans-serif;
+  /* Previous stack: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif. */
+  font-family: inherit;
 }
 
 .tatReportContainer *,
@@ -440,4 +440,75 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Follow the app theme applied to <html data-theme="dark">. */
+:global([data-theme='dark']) .tatReportContainer {
+  --ink: #e6edf7;
+  --navy-900: #e6edf7;
+  --navy-800: #20344d;
+  --navy-700: #1b3048;
+  --accent: #75b8f0;
+  --accent-tint: #20364d;
+  --canvas: #111d2b;
+  --surface: #172535;
+  --border: #304255;
+  --border-strong: #465d74;
+  --muted: #bdc9d7;
+  --muted-soft: #9caec1;
+  --danger: #ff9c9c;
+  background: linear-gradient(135deg, #101a27 0%, #142233 48%, #101a27 100%);
+}
+
+:global([data-theme='dark']) .tatReportFilters,
+:global([data-theme='dark']) .tatReportResults {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+:global([data-theme='dark']) .tatReportFilters input[type='date'],
+:global([data-theme='dark']) .tatReportFilters input[type='text'] {
+  background: var(--canvas);
+  border-color: var(--border-strong);
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+:global([data-theme='dark']) .tatReportTable thead th {
+  background: var(--navy-700);
+  border-bottom-color: var(--accent);
+}
+
+:global([data-theme='dark']) .tatReportTable tbody tr,
+:global([data-theme='dark']) .tatReportTable tbody td.emptyState {
+  background: var(--surface);
+}
+
+:global([data-theme='dark']) .tatReportTable tbody tr:nth-child(even) {
+  background: #1b2b3d;
+}
+
+:global([data-theme='dark']) .tatReportTable tbody tr:hover {
+  background: var(--accent-tint);
+}
+
+:global([data-theme='dark']) .tatReportTable tbody td {
+  color: var(--ink);
+  border-bottom-color: var(--border);
+}
+
+:global([data-theme='dark']) .tatReportTable tbody td.emptyState {
+  color: var(--muted-soft);
+}
+
+:global([data-theme='dark']) .clearButton {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+:global([data-theme='dark']) .searchButton {
+  background: #24679d;
+  border-color: #24679d;
+  color: #ffffff;
 }

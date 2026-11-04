@@ -1,9 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Icon } from './icons';
 import { defaultSidebarMenu } from './menuItems';
 import type { SidebarNode } from './menuItems';
 import styles from './Sidebar.module.css';
+// import { createPortal } from 'react-dom';
+// import Preferences from '../../../features/Preferences/Preferences';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
+import { routePaths } from '@/routes/routePaths';
+
+export const DESKTOP_QUERY = '(min-width: 1024px)';
 
 export type SidebarTheme = 'light' | 'dark';
 
@@ -72,7 +78,10 @@ const getInitials = (user: SidebarUser) =>
     .join('')
     .toUpperCase();
 
-export default function Sidebar({
+type Bar = { top: number; height: number; left: number; visible: boolean };
+const EMPTY_BARS: Bar[] = [0, 1, 2].map(() => ({ top: 0, height: 0, left: 0, visible: false }));
+
+function SidebarInner({
   theme = 'light',
   onToggleTheme,
   user,
@@ -82,6 +91,7 @@ export default function Sidebar({
   onCollapsedChange,
 }: SidebarProps) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   // Starts collapsed on small screens, where the sidebar becomes a top panel.
   const [collapsed, setCollapsed] = useState(
@@ -92,6 +102,62 @@ export default function Sidebar({
   );
   const [popover, setPopover] = useState<Popover>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+
+  const navRef = useRef<HTMLElement>(null);
+  const [bars, setBars] = useState<Bar[]>(EMPTY_BARS);
+
+  const [prefsOpen, setPrefsOpen] = useState(false);
+
+  // Collapse branches that don't contain the current page whenever the route changes.;
+  useEffect(() => {
+    setOpenKeys(
+      Object.fromEntries(collectActiveBranchKeys(menu, pathname).map((key) => [key, true])),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  // Measures the highlighted row at each level and positions its indicator bar.
+  const measure = useCallback(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const navRect = nav.getBoundingClientRect();
+    setBars((prev) => {
+      const next = [0, 1, 2].map((level): Bar => {
+        const rows = Array.from(
+          nav.querySelectorAll<HTMLElement>(`[data-level="${level}"][data-hl="true"]`),
+        );
+        const row = rows.find((r) => r.dataset.current === 'true') ?? rows[rows.length - 1];
+        if (!row) return { ...prev[level], visible: false };
+        const rowRect = row.getBoundingClientRect();
+        const itemRect = (row.parentElement ?? row).getBoundingClientRect(); // <li> has no hover transform
+        const inset = level === 0 ? 8 : 0;
+        return {
+          top: rowRect.top - navRect.top + inset,
+          height: rowRect.height - inset * 2,
+          left: itemRect.left - navRect.left + (level === 0 ? -1 : -9),
+          visible: true,
+        };
+      });
+      return JSON.stringify(prev) === JSON.stringify(next) ? prev : next;
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    measure();
+  }, [measure, pathname, openKeys, collapsed, theme]);
+
+  // The accordion animates the nav's height, so re-measure on every frame of it.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [measure]);
 
   useEffect(() => {
     onCollapsedChange?.(collapsed);
@@ -143,11 +209,15 @@ export default function Sidebar({
         );
 
         if (node.kind === 'link') {
+          const linkActive = isPathActive(node.to, pathname);
           return (
             <li key={key}>
               <NavLink
                 to={node.to}
                 data-tooltip={node.label}
+                data-level={Math.min(depth, 2)}
+                data-hl={linkActive}
+                data-current={linkActive}
                 className={({ isActive }) => cx(styles.row, depthClass, isActive && styles.active)}
               >
                 {rowMain}
@@ -158,6 +228,7 @@ export default function Sidebar({
 
         const isOpen = Boolean(openKeys[key]);
         const containsActive = hasActiveDescendant(node, pathname);
+        const highlighted = isOpen || containsActive;
         const panelId = `sidebar-panel-${key.replace(/[^a-zA-Z0-9]+/g, '-')}`;
 
         return (
@@ -165,13 +236,16 @@ export default function Sidebar({
             <button
               type="button"
               data-tooltip={node.label}
+              data-level={Math.min(depth, 2)}
+              data-hl={highlighted}
+              data-current={containsActive}
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => toggleBranch(key, depth)}
               className={cx(
                 styles.row,
                 depthClass,
-                containsActive && (depth === 0 ? styles.active : styles.activeParent),
+                highlighted && (depth === 0 ? styles.active : styles.activeParent),
               )}
             >
               {rowMain}
@@ -266,12 +340,35 @@ export default function Sidebar({
                 <button type="button" role="menuitem" className={styles.popoverItem}>
                   Doctor Profile
                 </button>
-                <button type="button" role="menuitem" className={styles.popoverItem}>
+                {/* TEMP: Profile-menu shortcut to the existing scheduling page. */}
+                <button
+                  type="button"
+                  role="menuitem"
+                  className={styles.popoverItem}
+                  onClick={() => {
+                    setPopover(null);
+                    navigate(routePaths.scheduling);
+                  }}
+                >
                   Clinical Schedule
                 </button>
-                <button type="button" role="menuitem" className={styles.popoverItem}>
+                <button type="button" role="menuitem" className={styles.popoverItem} onClick={() => {
+                    setPopover(null);
+                    setPrefsOpen(true);
+                  }}>
                   Preferences
                 </button>
+                {onToggleTheme && (
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className={cx(styles.popoverItem, styles.popoverItemIcon)}
+                    onClick={onToggleTheme}
+                  >
+                    <Icon name={theme === 'dark' ? 'sun' : 'moon'} className={styles.popoverIcon} />
+                    {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+                  </button>
+                )}
               </div>
               <div className={styles.popoverFoot}>
                 <button
@@ -318,13 +415,25 @@ export default function Sidebar({
           <span>Menu</span>
         </div>
 
-        <nav className={styles.nav} aria-label="Main menu">
+        <nav className={styles.nav} ref={navRef} aria-label="Main menu">
           {renderNodes(menu, 0, '')}
+          {bars.map((bar, i) => (
+            <span
+              key={i}
+              aria-hidden="true"
+              className={cx(
+                styles.indicator,
+                i === 0 ? styles.indicatorRoot : styles.indicatorNested,
+                bar.visible && styles.indicatorVisible,
+              )}
+              style={{ top: bar.top, height: bar.height, left: bar.left }}
+            />
+          ))}
         </nav>
       </div>
 
       <div className={styles.bottom}>
-        {onToggleTheme && (
+        {/* {onToggleTheme && (
           <button
             type="button"
             className={cx(styles.footerButton, styles.themeButton)}
@@ -334,7 +443,7 @@ export default function Sidebar({
             <Icon name={theme === 'dark' ? 'sun' : 'moon'} className={styles.footerIcon} />
             <span className={styles.label}>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
           </button>
-        )}
+        )} */}
 
         <button
           type="button"
@@ -354,7 +463,11 @@ export default function Sidebar({
           </span>
         </div>
       </div>
-
     </aside>
   );
+}
+export default function Sidebar(props: SidebarProps) {
+  const isDesktop = useMediaQuery(DESKTOP_QUERY);
+  if (!isDesktop) return null;
+  return <SidebarInner {...props} />;
 }

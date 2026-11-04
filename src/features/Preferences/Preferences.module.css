@@ -1,0 +1,796 @@
+/* =====================================================================
+   Preferences modal (shell + settings content) — single stylesheet
+   ===================================================================== */
+
+/* ---------- Overlay ---------- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow: auto;
+  background: rgba(15, 23, 42, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+@media (min-width: 768px) {
+  .overlay {
+    padding: 24px;
+  }
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 64rem;
+  max-height: calc(100vh - 78px);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* Previous stack: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif. */
+  font-family: inherit;
+  color: #1e293b;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tailwind's preflight is not available here, so re-create the bits the design relies on */
+.modal,
+.modal *,
+.modal *::before,
+.modal *::after {
+  box-sizing: border-box;
+}
+
+.modal h1,
+.modal h2,
+.modal p {
+  margin: 0;
+}
+
+.modal button {
+  font-family: inherit;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 12px 56px 8px 20px;
+  background: #ffffff;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+}
+
+.closeIconButton {
+  position: absolute !important;
+  top: 50% !important;
+  right: 16px !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 18px;
+  color: #94a3b8;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.closeIconButton:hover {
+  color: #475569;
+  background: #f1f5f9;
+}
+
+.closeIconButton:hover,
+.closeIconButton:active,
+.closeIconButton:focus {
+  transform: translateY(-50%) !important;
+}
+
+/* ---------- Body ---------- */
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 14px;
+  overflow-y: auto;
+  background: rgba(248, 250, 252, 0.5);
+}
+
+.body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+@media (min-width: 640px) {
+  .footer {
+    flex-direction: row;
+  }
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .footerActions {
+    width: auto;
+  }
+}
+
+.closeButton,
+.saveButton {
+  flex: 1;
+  padding: 8px 20px;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.closeButton {
+  font-weight: 500;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.closeButton:hover {
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.closeButton:active {
+  background: #f1f5f9;
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 24px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #2563eb;
+  border: 0;
+  box-shadow: 0 1px 2px 0 rgba(59, 130, 246, 0.3);
+}
+
+.saveButton:hover {
+  background: #1d4ed8;
+}
+
+.saveButton:active {
+  background: #1e40af;
+}
+
+@media (min-width: 640px) {
+  .closeButton,
+  .saveButton {
+    flex: initial;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* =====================================================================
+   Content layout
+   ===================================================================== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  text-align: left;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* The settings card is the only content, so let it use the full width */
+.columnFull {
+  grid-column: 1 / -1;
+}
+
+.emptyState {
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.cardFill {
+  flex: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cardIcon {
+  color: #2563eb;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #334155;
+}
+
+/* ---------- Shared form controls ---------- */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.checkbox:checked {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.crownIcon {
+  font-size: 11px;
+  color: #f59e0b;
+}
+
+/* ---------- Worklist (modality checkbox grid) ---------- */
+.modalityCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.modalityHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.modalityTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quickActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.quickActionPrimary,
+.quickActionSecondary {
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.quickActionPrimary {
+  color: #2563eb;
+}
+
+.quickActionPrimary:hover {
+  color: #1d4ed8;
+  background: #eff6ff;
+}
+
+.quickActionSecondary {
+  color: #64748b;
+}
+
+.quickActionSecondary:hover {
+  color: #334155;
+  background: #f1f5f9;
+}
+
+.quickActionDivider {
+  color: #cbd5e1;
+}
+
+.modalityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  flex: 1;
+  align-content: start;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .modalityGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.modalityOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.modalityOption:hover {
+  border-color: #93c5fd;
+  background: rgba(239, 246, 255, 0.2);
+}
+
+.modalityText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.modalityCode {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.modalityDesc {
+  font-size: 10px;
+  line-height: 1;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================================================
+   Settings list
+   One list for everything. Every setting is a tile (label left, control
+   right). A setting that has children becomes a full-width group tile with
+   its children nested inside, in the same grid.
+   ===================================================================== */
+/* Equal-width columns. `dense` back-fills gaps left by full-width group tiles. */
+.settingsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-auto-flow: dense;
+  gap: 8px;
+}
+
+/* Group tile: spans the whole row, header on top, children grid below */
+.settingGroup {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px 12px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #2563eb;
+  border-radius: 10px;
+}
+
+.settingGroupHeader {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.settingGroupBody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-auto-flow: dense;
+  gap: 8px;
+}
+
+/* A group nested inside another group takes one cell of the parent's grid
+   instead of spanning the full row. */
+.settingGroupNested {
+  grid-column: auto;
+}
+
+/* Body that holds sub-groups: two equal columns. Sub-groups fill left to right,
+   then wrap (Left | Right, then Mouse Wheel under Left, ...). */
+.settingGroupBodyGroups {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Tiles inside a half-width sub-group: smaller minimum so two still fit per row. */
+.settingGroupNested > .settingGroupBody:not(.settingGroupBodyGroups) {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* ---------- Setting tile ---------- */
+.settingField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.settingField:hover {
+  border-color: #bfdbfe;
+}
+
+.settingField:focus-within {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* Edition: soft highlight so it reads as the primary setting */
+.settingFieldFeatured {
+  background: linear-gradient(90deg, #eff6ff 0%, #ffffff 60%);
+  border-color: #bfdbfe;
+}
+
+.settingFieldLabel {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* ---------- Segmented choice control (Enable / Disable, editions, ...) ---------- */
+.choiceGroup {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 3px;
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 68px;
+  padding: 5px 12px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #64748b;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.choice:hover {
+  color: #0f172a;
+}
+
+.choiceOn,
+.choiceOn:hover {
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #bfdbfe, 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.choice:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+/* ---------- Select / text inputs inside a tile ---------- */
+.settingSelect,
+.settingInput {
+  display: block;
+  width: 50%;
+  flex-shrink: 0;
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.settingSelect:focus,
+.settingInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+/* ---------- Product switcher (RIS / PACS) ---------- */
+.productTabs {
+  display: flex;
+  gap: 8px;
+  margin: -6px 0 8px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.productTab {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+/* Hover: no colour change, only a border highlight. !important is there to beat
+   the app's global button:hover styles, which were turning the tab dark blue. */
+.productTab:hover {
+  color: #64748b !important;
+  background: transparent !important;
+  border-color: #93c5fd;
+}
+
+.productTab:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.productTabActive,
+.productTabActive:hover {
+  color: #2563eb !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 1px #e2e8f0, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.productTabActive:hover {
+  border-color: #93c5fd;
+}
+
+.productTabIcon {
+  font-size: 13px;
+}
+
+/* ---------- Two columns: Settings card left, Worklist (modality) card right ---------- */
+.settingsSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.settingsSplitSingle {
+  grid-template-columns: 1fr;
+}
+
+.settingsRight {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Worklist card fills the right column instead of using height: 100% */
+.settingsRight .modalityCard {
+  flex: 1;
+  height: auto;
+}
+
+/* Tiles in the half-width Settings card: allow smaller cells */
+.settingsSplit .settingsList {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* No worklist card: Settings uses the full width, so fix it at 2 columns. */
+.settingsSplitSingle .settingsList {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.settingFieldDisabled,
+.choiceDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.settingFieldDisabled * {
+  pointer-events: none;
+}
+
+/* =====================================================================
+   Responsive overrides — keep these LAST so they win over the base rules
+   ===================================================================== */
+
+/* Narrow screens: stack, Settings first, Worklist below */
+@media (max-width: 1023px) {
+  .settingsSplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .settingGroupBodyGroups {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Very narrow: single column, and stack label above control so nothing gets squeezed */
+@media (max-width: 520px) {
+  .settingsList,
+  .settingGroupBody,
+  .settingGroupNested > .settingGroupBody:not(.settingGroupBodyGroups),
+  .settingsSplit .settingsList {
+    grid-template-columns: 1fr;
+  }
+
+  .settingField {
+    flex-wrap: wrap;
+  }
+
+  .settingSelect,
+  .settingInput {
+    width: 100%;
+  }
+}

@@ -67,6 +67,7 @@ When replacing a section placeholder, keep the route page responsible for compos
 
 - Use CSS Modules (`*.module.css`) for component and page selectors. Co-locate styles with the component/page.
 - `src/styles/global.css` is the deliberate global entry for document defaults and imports of tokens, themes, and fonts.
+- The app-wide typeface is Poppins, loaded locally from `@fontsource/poppins` in `src/styles/fonts.css` and applied to the document in `src/styles/global.css`. Keep page and component CSS on `font-family: inherit` so they follow the app font. Replaced font stacks are commented beside the new declaration for reference. `src/index.css` mirrors this setup for the legacy entrypoint.
 - Shared design values belong in `src/styles/tokens.css`; theme overrides belong in `src/styles/themes.css`.
 - Avoid broad global selectors, `:global`, and importing vendor CSS from feature components. If an integration needs global vendor CSS, import it once from the app entry and document its scope and side effects.
 - CSS Modules scope class names, but do not scope element selectors, custom properties, inherited styles, portal content, or third-party global CSS.
@@ -76,6 +77,8 @@ When replacing a section placeholder, keep the route page responsible for compos
 ## TypeScript and validation boundary
 
 The app aims to use TypeScript for all new and migrated frontend code. Keep strict checking enabled and model API/domain data explicitly. Do not use `any`, weaken TypeScript settings, or enable JavaScript checking shortcuts to make a migration appear complete.
+
+Use function components for app pages and UI components. `Calendar1` now uses hooks for its state, CalendarJS setup, and cleanup; its small `setState` helper merges partial state updates to preserve the behavior of the original class implementation. `AppErrorBoundary` is also a function component and delegates React's error-capture lifecycle to the `react-error-boundary` package, since React's built-in error boundary API requires a class component.
 
 Current scripts:
 

@@ -1,0 +1,3562 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+
+  background: #f5f7fb;
+  color: #27364a;
+
+  /* Previous stack: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif. */
+  font-family: inherit;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topBar {
+  width: 100%;
+  min-height: 56px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 24px;
+
+  background: #fff;
+  border-bottom: 1px solid #e1e6ed;
+
+  gap: 16px;
+}
+
+.menuButton {
+  width: 30px;
+  height: 30px;
+
+  border: 0;
+  background: transparent;
+
+  color: #23486f;
+
+  font-size: 17px;
+
+  cursor: pointer;
+}
+
+.globalSearch {
+  width: min(310px, 34vw);
+  height: 34px;
+
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d7dee7;
+  border-radius: 5px;
+
+  background: #fff;
+}
+
+.globalSearch input {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 0 9px;
+
+  border: 0;
+  outline: 0;
+
+  color: #39485c;
+
+  font-size: 10px;
+}
+
+.globalSearch span {
+  padding-right: 9px;
+
+  color: #6d7a8d;
+
+  font-size: 16px;
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+.topActions>button {
+  border: 0;
+  background: transparent;
+
+  color: #3d4e64;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding-left: 12px;
+
+  border-left: 1px solid #e1e6ed;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edf2f7;
+
+  font-size: 15px;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.userDetails strong {
+  color: #2e3e54;
+
+  font-size: 9px;
+}
+
+.userDetails span {
+  margin-top: 1px;
+
+  color: #818c9c;
+
+  font-size: 8px;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px 24px 11px;
+  gap: 16px;
+}
+
+.titleText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  /* important for responsiveness */
+  flex: 1;
+}
+
+.titleSection h1 {
+  margin: 0;
+  color: #173e69;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.titleSection p {
+  margin: 4px 0 0;
+  color: #7a8697;
+  font-size: 10px;
+}
+
+.walkInButton {
+  flex: 0 0 auto;
+  /* don't let flexbox stretch/shrink it */
+  width: auto;
+  height: 33px;
+  padding: 0 12px;
+
+  border: 1px solid #d0d9e4;
+  border-radius: 5px;
+  background: #fff;
+  color: #205883;
+
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.walkInButton:hover {
+  background: #205883;
+  color: #ffffff;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.pageGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr) 270px;
+
+  gap: 4px;
+
+  box-sizing: border-box;
+
+  padding: 0 5px 3px 5px;
+  /* align-items: start; */
+}
+
+.mainContent {
+  min-width: 0;
+  padding: 0px;
+  height: 100%;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card,
+.sidebarCard {
+  box-sizing: border-box;
+
+  background: #fff;
+
+  border: 1px solid #dfe5ed;
+  border-radius: 6px;
+
+  box-shadow: 0 1px 2px rgba(30, 45, 65, 0.025);
+}
+
+.card {
+  min-width: 0;
+
+  padding: 5px 5px;
+
+  margin-bottom: 10px;
+}
+
+.sidebarCard {
+  padding: 11px;
+
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 9px;
+
+  color: #183f69;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.sectionTitle>span {
+  width: 20px;
+  height: 20px;
+
+  flex: 0 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #1761a0;
+
+  color: #fff;
+
+  font-size: 9px;
+}
+
+.sectionTitle small {
+  color: #8b95a4;
+
+  font-size: 7px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   TOP SECTIONS
+========================================================= */
+
+.topSections {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr) minmax(0, 1fr);
+
+  gap: 5px;
+}
+
+.topSections .card {
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.patientGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: 7px 15px;
+}
+
+.formGroup {
+  min-width: 0;
+}
+
+.formGroup label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #667388;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.formGroup em {
+  color: #d94d4d;
+  font-style: normal;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+
+  background: #fff;
+
+  color: #35445a;
+
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 9px;
+}
+
+.formGroup input,
+.formGroup select {
+  height: 29px;
+  font-size: 10px;
+  padding: 0 8px;
+}
+
+.formGroup textarea {
+  min-height: 59px;
+
+  padding: 7px 8px;
+
+  resize: vertical;
+
+  line-height: 1.35;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: #6b9bc4;
+
+  box-shadow: 0 0 0 2px rgba(55, 120, 175, 0.07);
+}
+
+.formGroup input:read-only,
+.formGroup select:disabled {
+  background: #f5f7fa;
+  color: #536276;
+  cursor: default;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon input {
+  padding-right: 28px;
+}
+
+.inputWithIcon span {
+  position: absolute;
+
+  top: 6px;
+  right: 8px;
+
+  color: #748196;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   PRIORITY
+========================================================= */
+
+.priorityGroup,
+.contrastGroup {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 4px;
+}
+
+.priorityGroup button,
+.contrastGroup button {
+  height: 29px;
+
+  padding: 0 10px;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+
+  background: #fff;
+
+  color: #657186;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.priorityActive {
+  border-color: #ebd494 !important;
+
+  background: #fff5dc !important;
+
+  color: #795c1e !important;
+}
+
+.contrastActive {
+  border-color: #73a3ce !important;
+
+  background: #eef6ff !important;
+
+  color: #1d5d92 !important;
+}
+
+/* =========================================================
+   MODALITY
+========================================================= */
+
+.modalityGroup {
+  display: grid;
+  /* Force a clean 4-column layout so everything has enough breathing room */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  overflow: auto;
+  /* Handles both row and column spacing */
+}
+
+.modalityButton {
+  min-width: 0;
+  min-height: 48px;
+  height: auto;
+  
+  padding: 6px 4px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+width: stretch;
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+  background: #fff;
+  color: #68758a;
+  font-size: 10px;
+
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.modalityButton:hover {
+  border-color: #9dbbd3;
+  color: #ffffff;
+}
+
+.modalityIcon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.modalitySelected {
+  border-color: #76a6cf;
+  background: #eef6fd;
+  color: #18598e;
+}
+
+/* =========================================================
+   SCHEDULER
+========================================================= */
+
+.scheduler {
+  display: grid;
+
+  /*
+   * CalendarJS needs enough room for its 7-column
+   * calendar and its navigation controls.
+   */
+  grid-template-columns: 250px minmax(0, 1fr);
+
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+  align-items: start;
+  box-sizing: border-box;
+}
+
+.datePanel {
+  width: 250px;
+  min-width: 250px;
+
+  box-sizing: border-box;
+}
+
+.datePanel h4 {
+  margin: 1px 0 6px;
+
+  color: #69768a;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   CALENDARJS
+========================================================= */
+
+/* Overall wrapper */
+.calendarContainer :global(.lm-calendar) {
+  width: 100% !important;
+  padding: 6px !important;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 6px;
+  /* Previous stack: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif. */
+  font-family: inherit;
+  color: #3166ab;
+}
+
+/* Header row (month/year label) */
+.calendarContainer :global(.lm-calendar-labels) {
+  width: auto !important;
+  min-width: 0;
+  flex: 1 1 auto;
+  margin: 4px 0 !important;
+  padding: 4px !important;
+  box-sizing: border-box;
+  color: #173e69;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Expand/collapse + nav buttons */
+.calendarContainer :global(.lm-calendar-icon) {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 15px !important;
+  line-height: 24px !important;
+  border-radius: 12px !important;
+  background: #1765a3;
+  color: #fff;
+  margin-top: 10px;
+}
+
+/* CalendarJS uses Material Symbols ligature text, but that font is not loaded
+   by this app. Replace the words with plain angle-bracket navigation marks. */
+.page .calendarContainer :global(.lm-calendar-icon) {
+  /* Previous stack: Arial, sans-serif (used by the calendar widget). */
+  font-family: inherit !important;
+  font-size: 0 !important;
+}
+
+.page .calendarContainer :global(.lm-calendar-navigation button:first-child)::before,
+.page .calendarContainer :global(.lm-calendar-navigation button:last-child)::before {
+  display: block;
+  /* Previous stack: Arial, sans-serif. */
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.page .calendarContainer :global(.lm-calendar-navigation button:first-child)::before {
+  content: '<';
+}
+
+.page .calendarContainer :global(.lm-calendar-navigation button:last-child)::before {
+  content: '>';
+}
+
+.calendarContainer :global(.lm-calendar-content > div) {
+  width: 24px !important;
+  height: 24px !important;
+  box-sizing: border-box;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 100px;
+  background-origin: padding-box;
+  min-width: 0;
+}
+
+.calendarContainer :global(.lm-calendar-header > div:first-child) {
+  display: flex;
+  align-items: center;
+  flex: 1 1;
+  user-select: none;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.calendarContainer :global(.lm-calendar-navigation) {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.calendarContainer :global(.lm-calendar-labels > button) {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.calendarContainer :global(.lm-calendar-icon:hover) {
+  background: #124f80;
+}
+
+/* Ripple click effect — match your accent color instead of default */
+.calendarContainer :global(.lm-ripple) {
+  background-color: rgba(23, 101, 163, 0.25);
+}
+
+.calendarBox {
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+  /* forces fixed-position children to contain here */
+}
+
+.calendarBox {
+  width: 250px;
+
+  box-sizing: border-box;
+
+  padding: 5px;
+
+  /* border: 3px solid #dfe5ed; */
+  border-radius: 5px;
+  background: #fff;
+  /*
+   * Never clip CalendarJS.
+   */
+  overflow: visible;
+}
+
+/* .calendarContainer:global(.lm-calendar-header) {
+    display: flex;
+    flex-direction: column;
+    width: 118%;
+    padding: 0px 0px;
+} */
+.calendarContainer {
+  width: 250px;
+
+  box-sizing: border-box;
+
+  overflow: visible;
+}
+
+/* =========================================================
+   SCHEDULE TOOLBAR
+========================================================= */
+
+.calendarSchedule {
+  width: 100%;
+  height: 500px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.scheduleHidden {
+  display: none;
+}
+
+.schedulePanel {
+  min-width: 0;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.scheduleToolbar {
+  min-height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 6px;
+  min-width: 0;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.viewButtons {
+  display: flex;
+
+  flex: 0 0 auto;
+
+  margin-bottom: 10px;
+}
+
+.viewButtons button {
+  height: 27px;
+
+  padding: 0 2px;
+
+  border: 1px solid #d8dfe8;
+
+  background: #fff;
+
+  color: #697589;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.viewButtons button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.viewButtons button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.viewButtons .activeView {
+  border-color: #1765a3;
+
+  background: #1765a3;
+
+  color: #fff;
+}
+
+.dateControls {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.dateControls strong {
+  margin-right: 100px;
+
+  color: #44536a;
+   
+  font-size: 15px;
+
+  white-space: nowrap;
+}
+
+.dateControls button {
+  height: 27px;
+
+  padding: 0 8px;
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+  background: #fff;
+
+  color: #647186;
+  width:fit-content;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   SCHEDULER CONTENT
+========================================================= */
+
+.schedulerContent {
+  display: grid;
+
+  grid-template-columns: 150px minmax(0, 1fr);
+
+  gap: 7px;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+  align-items: start;
+}
+
+.resourceFilters {
+  width: 150px;
+  min-width: 150px;
+  /* box-sizing: border-box; */
+  padding-right: 0px;
+  overflow: auto;
+}
+
+.resourceFilters h4 {
+  margin: 1px 0 9px;
+  color: #526177;
+  font-size: 12px;
+}
+
+.resourceFilters label:not(.checkLabel) {
+  display: block;
+
+  margin: 7px 0 3px;
+
+  color: #7d8899;
+
+  font-size: 10px;
+}
+
+.resourceFilters select {
+  width: 100%;
+  height: auto;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dbe1e8;
+  border-radius: 4px;
+
+  background: #fff;
+
+  color: #4e5c70;
+
+  font-size: 10px;
+}
+
+.checkLabel {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 4px;
+
+  margin-top: 11px;
+
+  color: #68758a;
+
+  font-size: 10px;
+
+  line-height: 1.3;
+}
+
+.checkLabel input {
+  margin: 0;
+}
+
+/* =========================================================
+TIMELINE
+========================================================= */
+.timelinePanel {
+  min-width: 0;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.timelineScroll {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: thin;
+}
+
+.resourceHeader {
+  display: flex;
+  align-items: center;
+
+  padding: 12px;
+
+  font-weight: 600;
+
+  border-right: 1px solid #d9e1ea;
+}
+
+.hoursHeader {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+
+  width: 1100px;
+}
+
+.hourHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-right: 1px solid #e5eaf0;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #475569;
+
+  white-space: nowrap;
+}
+
+.hoursHeader span {
+  padding: 5px 0;
+
+  border-left: 1px solid #edf0f4;
+
+  color: #7b8798;
+
+  font-size: 6px;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+.timelineRow {
+  display: grid;
+  grid-template-columns: 180px 1100px;
+
+  width: 1280px;
+  min-height: 82px;
+
+  border-bottom: 1px solid #d9e1ea;
+}
+
+.timelineRow:last-child {
+  border-bottom: 0;
+}
+
+.resourceName {
+  min-width: 0;
+
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  background: #fbfcfd;
+
+  border-right: 1px solid #e2e7ed;
+}
+
+.resourceName strong {
+  overflow: hidden;
+
+  color: #405169;
+
+  font-size: 7px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.resourceName span {
+  overflow: hidden;
+
+  color: #8994a4;
+
+  font-size: 6px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.timelineArea {
+  position: relative;
+
+  width: 1100px;
+  min-width: 1100px;
+  min-height: 82px;
+
+  overflow: hidden;
+}
+
+.resourceOperatingArea {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  background: rgba(245, 248, 251, 0.55);
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+/* =========================================================
+       BREAK PERIOD
+    ========================================================= */
+.breakPeriod {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #cc753b;
+  border-left: 1px dashed #b8c0ca;
+  border-right: 1px dashed #b8c0ca;
+  color: #ffffff;
+  font-size: 9px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.breakPeriod span {
+  writing-mode: vertical-rl;
+  opacity: 1;
+}
+
+/* =========================================================
+       LEGEND
+    ========================================================= */
+
+.legend {
+  min-height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-bottom: 3px;
+
+  color: #788496;
+
+  font-size: 12px;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+}
+
+.legend i {
+  width: 6px;
+  height: 6px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+.availableDot {
+  background: #0d80e4;
+  border-color: #011f48;
+}
+
+.bookedDot {
+    background: #9ceab1;
+    border-color: #34a775;
+}
+
+.confirmedDot {
+  background: #044511;
+  border-color: #8bc9a9;;
+}
+
+.maintenanceDot {
+
+  background: #dc777d;
+  border-color:#9d383f
+}
+
+
+
+/* =========================================================
+    APPOINTMENT BLOCKS
+    
+    Position comes from actual start/end minutes.
+    
+    They are therefore aligned to the same time
+    coordinate system as the header.
+    ========================================================= */
+
+.timelineAppointment {
+  position: absolute;
+
+  top: 4px;
+
+  height: 38px;
+
+  box-sizing: border-box;
+
+  padding: 3px 4px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  overflow: hidden;
+
+  border: 1px solid;
+
+  border-radius: 4px;
+
+  text-align: left;
+
+  font-family: inherit;
+
+  cursor: default;
+
+  z-index: 1;
+}
+
+.timelineAppointment strong,
+.timelineAppointment span {
+  max-width: 100%;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.timelineAppointment .appointmentTime {
+  color: #69768a;
+
+  font-size: 5.5px;
+}
+
+.timelineAppointment strong {
+  color: #34465e;
+
+  font-size: 6.5px;
+}
+
+.timelineAppointment span:not(.appointmentTime) {
+  color: #8591a2;
+
+  font-size: 5.5px;
+}
+
+.selectableAppointment {
+  cursor: pointer;
+}
+
+.selectableAppointment:hover {
+  z-index: 5;
+
+  box-shadow: 0 2px 8px rgba(30, 50, 75, 0.16);
+}
+
+.booked {
+  background: #edf5fc;
+  border-color: #91b7d7;
+}
+
+.confirmed {
+  background: #eaf8f0;
+  border-color: #8bc9a9;
+}
+
+.hold {
+  background: #fff8e7;
+  border-color: #e7c46e;
+}
+
+.maintenance {
+  background: #f9e9e9;
+  border-color: #dfa0a3;
+}
+
+.unavailable {
+  background: #f1f3f5;
+  border-color: #d1d6dc;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.emptyState {
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #8a95a5;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   LIST VIEW
+========================================================= */
+
+.listView {
+  border: 1px solid #dfe5ed;
+  border-radius: 4px;
+  max-height: 260px;
+  overflow-y: scroll;
+}
+
+.listViewSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  /* min-height: 42px; */
+  padding: 0 10px;
+  border-bottom: 1px solid #dfe5ed;
+  background: #fff;
+}
+
+.listViewSummary strong {
+  color: #405169;
+  font-size: 12px;
+}
+
+.listViewSummary span {
+  color: #748094;
+  font-size: 11px;
+}
+
+.listHeader,
+.listRow {
+  display: grid;
+
+  grid-template-columns:
+    1.1fr 1fr 1.2fr 1fr 0.8fr;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+.listHeader {
+  min-height: 38px;
+
+  padding: 0 8px;
+
+  background: #f8fafc;
+
+  color: #748094;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.listRow {
+  width: 100%;
+  /* min-height: 46px; */
+  min-height: auto;
+  /* max-height: 40px; */
+
+  box-sizing: border-box;
+
+  /* padding: 0 8px; */
+
+  border: 0;
+  border-top: 1px solid #edf0f4;
+
+  background: #fff;
+
+  color: #536176;
+
+  text-align: left;
+
+  font-family: inherit;
+  font-size: 12px;
+}
+.listRow:hover {
+  background: #1d5d91; 
+  color: #f7fbff ;
+}
+.listRow:not(:disabled) {
+  cursor: pointer;
+}
+
+.listRow:not(:disabled):hover {
+  /* background: #f7fbff; */
+  color: #ffffff
+}
+
+.listRow:disabled :hover {
+  cursor: default;
+  /* background: #fff; */
+  /* color: #810d8a; */
+}
+
+.bookedBadge,
+.confirmedBadge,
+.holdBadge,
+.maintenanceBadge,
+.unavailableBadge {
+  width: max-content;
+
+  padding: 3px 6px;
+
+  border-radius: 4px;
+
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.bookedBadge {
+  background: #edf5fc;
+  color: #3d719c;
+}
+
+.confirmedBadge {
+  background: #eaf8f0;
+  color: #328354;
+}
+
+.holdBadge {
+  background: #fff8e7;
+  color: #8b6a20;
+}
+
+.maintenanceBadge {
+  background: #f9e9e9;
+  color: #a04c50;
+}
+
+.unavailableBadge {
+  background: #f1f3f5;
+  color: #737c88;
+}
+
+/* =========================================================
+   SELECTED SLOT
+========================================================= */
+
+.selectedSlot {
+  min-height: 35px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 6px;
+
+  padding: 5px 7px;
+
+  border: 1px solid #dce3eb;
+  border-radius: 4px;
+
+  background: #f8fafc;
+
+  color: #6c7889;
+
+  font-size: 12px;
+}
+
+.selectedSlot>div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.selectedSlot strong {
+  color: #40536b;
+}
+
+.selectedSlot button {
+  margin-left: auto;
+  flex: 0 0 auto;
+  margin-top: auto;
+  height: 26px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 4px;
+  background: #1765a3;
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.selectedSlot button:disabled {
+  background: #b9c3cf;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   BOTTOM SECTIONS
+========================================================= */
+
+.bottomSections {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.bottomSections .card {
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   Custom  resource scheduler
+========================================================= */
+.resourceTimelineScroll {
+  width: 100%;
+  max-height: 520px;
+  overflow-x: auto;
+  border: 1px solid #d9e1ea;
+  border-radius: 4px;
+  overflow-y: hidden;
+}
+
+.resourceTimeline {
+  width: max-content;
+  min-width: 100%;
+  background: #fff;
+}
+
+.resourceTimelineHeader,
+.resourceTimelineRow {
+  display: grid;
+  grid-template-columns: 202px max-content;
+}
+
+.resourceTimelineHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f8fafc;
+}
+
+.resourceTimelineCorner,
+.resourceTimelineResource {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  border-right: 1px solid #d9e1ea;
+}
+
+.resourceTimelineCorner {
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 12px;
+  color: #405169;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f8fafc;
+}
+
+.resourceTimelineHours {
+  display: grid;
+  min-height: 42px;
+}
+
+.resourceTimelineHour {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #d9e1ea;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.resourceTimelineRow {
+  min-height: 76px;
+  border-top: 1px solid #d9e1ea;
+}
+
+.resourceTimelineResource {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 12px;
+  background: #fff;
+}
+
+.resourceTimelineResource strong {
+  color: #405169;
+  font-size: 12px;
+}
+
+.resourceTimelineResource span,
+.resourceTimelineResource small {
+  color: #748094;
+  font-size: 10px;
+}
+
+.resourceTimelineResource small {
+  color: #52657b;
+  font-weight: 600;
+}
+
+.resourceTimelineTrack {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  min-height: 76px;
+  isolation: isolate;
+  background-color: #f3f5f7;
+  background-image: linear-gradient(to right, #dfe5ed 1px, transparent 1px);
+  background-size: 44px 100%;
+}
+
+.resourceTimelineWorkingHours {
+  grid-row: 1;
+  z-index: 0;
+  background: #fff;
+  border-right: 1px solid #dfe5ed;
+}
+
+.resourceTimelineBlock {
+  grid-row: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.resourceTimelineBreak {
+  background: #cc753b;
+  color: #fff;
+}
+
+.resourceTimelineMaintenance {
+  background: #ffdada;
+  color: #991b1b;
+}
+
+.resourceTimelineUnavailable {
+  background: #f1dede;
+  color: #7f1d1d;
+}
+
+.resourceTimelineEvent {
+  position: relative;
+  grid-row: 1;
+  z-index: 2;
+  align-self: center;
+  min-width: 0;
+  width: auto;
+  margin: 0 2px;
+  padding: 5px 7px;
+  border: 1px solid;
+  border-radius: 4px;
+  overflow: visible;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.resourceTimelineEvent strong,
+.resourceTimelineEvent span {
+  display: block;
+  overflow: hidden;
+  font-size: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.resourceTimelineEvent span {
+  margin-top: 3px;
+  font-size: 9px;
+}
+
+.resourceTimelineAvailable {
+  background: #0d80e4;
+  border-color: #04858b;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.resourceTimelineBooked {
+  background: #9ceab1;
+  border-color: #34a775;
+  color: #fefefe;
+}
+
+.resourceTimelineSelectable {
+  cursor: pointer;
+}
+
+.resourceTimelineSelectable:hover {
+  box-shadow: 0 2px 8px rgba(30, 50, 75, 0.16);
+}
+
+.resourceTimelineConfirmed {
+  background: #044511;
+  border-color: #8bc9a9;
+  color: #ffffff
+}
+
+.resourceTimelineEvent[data-tooltip]::after {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  width: max-content;
+  max-width: 220px;
+  padding: 7px 9px;
+  border-radius: 4px;
+  background: #26374b;
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 10px;
+  line-height: 1.45;
+  white-space: pre-line;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-2px);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+/* .resourceTimelineEvent[data-tooltip]:hover::after {
+  opacity: 0.1;
+  transform: translateX(0);
+} */
+
+
+/* =========================================================
+   APPOINTMENT DETAILS
+========================================================= */
+
+.appointmentTabs {
+  display: flex;
+
+  margin-bottom: 9px;
+}
+
+.appointmentTabs button {
+  height: 25px;
+
+  padding: 0 9px;
+
+  border: 1px solid transparent;
+
+  border-radius: 4px;
+
+  background: transparent;
+
+  color: #8993a3;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.appointmentTabs .activeTab {
+  border-color: #a3c0da;
+
+  background: #eff6fc;
+
+  color: #1d5d91;
+}
+
+.modeRow {
+  display: flex;
+
+  gap: 5px;
+}
+
+.modeRow select {
+  flex: 1;
+}
+
+.modeRow button {
+  height: 29px;
+  margin: 0px 0px 10px;
+  padding: 0 7px;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+
+  background: #fff;
+
+  color: #687589;
+
+  font-size: 7px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+.notifications {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-top: 1px;
+}
+
+.notifications label {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  color: #697589;
+
+  font-size: 12px;
+}
+
+.notifications input {
+  margin: 0;
+}
+
+/* =========================================================
+   PREPARATION
+========================================================= */
+
+.customInstruction {
+  padding: 2px 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #1765a3;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.uploadBox {
+  min-height: 115px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  border: 1px dashed #bdc8d5;
+  border-radius: 5px;
+
+  background: #fcfdff;
+
+  color: #788597;
+
+  cursor: pointer;
+}
+
+.uploadBox:hover {
+  background: #f8fbfe;
+
+  border-color: #8faec9;
+}
+
+.uploadIcon {
+  color: #5d7fa4;
+
+  font-size: 25px;
+}
+
+.uploadBox strong {
+  max-width: 90%;
+
+  overflow: hidden;
+
+  color: #5d697a;
+
+  font-size: 8px;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.uploadBox span:not(.uploadIcon) {
+  font-size: 7px;
+}
+
+.uploadBox small {
+  color: #9aa4b1;
+
+  font-size: 6px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  padding: 0px 10px 15px 10px;
+}
+
+.footerActions>div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.clearButton {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 12px 20px;
+  font-size: 10px;
+  border: 1px solid #d5dce5;
+  background: #fff;
+  color: #58677b;
+}
+
+.draftButton {
+  flex: 0 0 auto;
+  width: auto;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #536277;
+  font-size: 10px;
+}
+
+.confirmButton {
+  flex: 0 0 auto;
+  width: auto;
+  border: 1px solid #1765a3;
+  background: #1765a3;
+  color: #fff;
+  font-size: 10px;
+}
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarCard h3 {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin: 0 0 10px;
+
+  color: #23486e;
+
+  font-size: 9px;
+}
+
+.sidebarCard h3 span {
+  color: #36709f;
+}
+
+.summaryRows {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.summaryRows>div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 7px;
+}
+
+.summaryRows span {
+  color: #7a8798;
+
+  font-size: 12px;
+}
+
+.summaryRows strong {
+  max-width: 60%;
+
+  color: #3d4a5d;
+
+  font-size: 12px;
+
+  text-align: right;
+}
+
+.statusConfirmed,
+.statusDraft,
+.statusPending {
+  padding: 3px 6px;
+
+  border-radius: 4px;
+}
+
+.statusConfirmed {
+  background: #e4f6eb;
+
+  color: #328354 !important;
+}
+
+.statusDraft {
+  background: #fff7df;
+
+  color: #85661e !important;
+}
+
+.statusPending {
+  background: #eef2f6;
+
+  color: #677487 !important;
+}
+
+/* =========================================================
+   AVAILABILITY
+========================================================= */
+
+.availabilityRows {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.availabilityRows>div {
+  display: grid;
+
+  grid-template-columns:
+    16px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+.availabilityRows span {
+  color: #4d7da7;
+
+  font-size: 9px;
+}
+
+.availabilityRows label {
+  color: #69768a;
+
+  font-size: 12px;
+}
+
+.availabilityRows strong {
+  color: #3d4e64;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quickActions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.quickActions button {
+  padding: 2px 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #536277;
+
+  text-align: left;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.quickActions button:disabled {
+  color: #b7c0cc;
+  cursor: not-allowed;
+}
+
+.quickActions button:disabled:hover {
+  color: #b7c0cc;
+}
+
+/* =========================================================
+   UPCOMING
+========================================================= */
+
+.upcomingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upcomingHeader h3 {
+  margin-bottom: 10px;
+}
+
+.upcomingHeader button {
+  border: 0;
+
+  background: transparent;
+
+  color: #24659b;
+
+  padding: 3px 5px;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.upcomingList {
+  /* max-height: 180px; */
+  padding-bottom: 2px;
+  overflow-y: auto;
+}
+.sidebarCard_upcoming {
+  padding: 11px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #dfe5ed;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(30, 45, 65, 0.025);
+  overflow: auto;
+  /* max-height: 59vh;   ← delete */
+
+  flex: 1 1 0;          /* fill the space left in the sidebar */
+  min-height: 200px;    /* safety so it never collapses */
+  contain: size;        /* its content can't stretch the row */
+  margin-bottom: 10px;  /* matches the bottom margin of the left cards so edges line up */
+}
+
+.upcomingEmptyState {
+  padding: 12px 0;
+  color: #748094;
+  font-size: 11px;
+  text-align: center;
+}
+
+.upcomingAppointment {
+  display: grid;
+
+  width: 100%;
+
+  grid-template-columns:
+    7px minmax(0, 1fr) auto;
+
+  gap: 5px;
+
+  padding: 7px 0;
+
+  border-bottom: 1px solid #edf0f4;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.upcomingAppointment:hover {
+  background: #f7fbff;
+}
+
+.upcomingAppointment:last-child {
+  border-bottom: 0;
+}
+
+.upcomingAppointment>i {
+  width: 6px;
+  height: 6px;
+
+  margin-top: 3px;
+
+  border-radius: 50%;
+}
+
+.upcomingConfirmed>i {
+    background: #044511;
+    border-color: #8bc9a9;
+}
+
+.upcomingBooked>i {
+    background: #9ceab1;
+    border-color: #34a775;
+}
+
+.upcomingAppointment>div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1px;
+}
+
+.upcomingAppointment strong {
+  color: #3d4a5d;
+
+  font-size: 12px;
+}
+
+.upcomingAppointment span {
+  overflow: hidden;
+
+  color: #566579;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.upcomingAppointment small {
+  color: #929baa;
+
+  font-size: 10px;
+}
+
+.upcomingAppointment b {
+  max-width: 70px;
+
+  align-self: center;
+
+  color: #607087;
+
+  font-size: 10px;
+  font-weight: 500;
+
+  text-align: right;
+}
+/* =========================================================
+   Scroll-Bar
+========================================================= */
+/* 1. Set the overall width/height of the scrollbar */
+::-webkit-scrollbar {
+  width: 5px;  /* Width of vertical scrollbar */
+  height: 5px; /* Height of horizontal scrollbar */
+}
+
+/* 2. Style the scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: #f3f1f100;
+  border-radius: 5px;
+}
+
+/* 3. Style the scrollbar thumb (draggable handle) */
+::-webkit-scrollbar-thumb {
+  background: #268ac069;
+  border-radius: 5px;
+}
+
+/* 4. Style the thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+  background: #0c476eba;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+/* ---------------------------------------------------------
+   1200
+--------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .pageGrid {
+    grid-template-columns:
+      minmax(0, 1fr) 245px;
+  }
+
+  .scheduler {
+    grid-template-columns:
+      250px minmax(0, 1fr);
+  }
+
+  .datePanel {
+    width: 250px;
+    min-width: 250px;
+  }
+
+  .calendarBox {
+    width: 250px;
+    min-width: 250px;
+  }
+
+  .calendarContainer {
+    width: 250px;
+  }
+
+  .modalityGroup {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------------------------------------------------------
+   1050
+
+   Sidebar moves below main content.
+--------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+  .pageGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+  }
+
+  .sidebarCard {
+    margin-bottom: 0;
+  }
+
+  .sidebarCard:last-child {
+    grid-column: span 2;
+  }
+  
+  .sidebarCard_upcoming {
+    contain: none;
+    max-height: 59vh;
+  }
+}
+
+/* ---------------------------------------------------------
+   850
+
+   Sections 1/2 stack.
+--------------------------------------------------------- */
+
+@media (max-width: 850px) {
+  .topSections {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduler {
+    grid-template-columns: 1fr;
+  }
+
+  .datePanel {
+    max-width: 300px;
+  }
+
+  .bottomSections {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bottomSections .card:last-child {
+    grid-column: span 2;
+  }
+}
+
+/* ---------------------------------------------------------
+   700
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .topBar {
+    padding: 8px 12px;
+
+    flex-wrap: wrap;
+  }
+
+  .globalSearch {
+    order: 3;
+
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .titleSection {
+    align-items: flex-start;
+
+    padding: 13px 12px 10px;
+
+    flex-direction: column;
+
+    gap: 9px;
+  }
+
+  .walkInButton {
+    width: 100%;
+  }
+
+  .pageGrid {
+    padding: 0 12px 12px;
+  }
+
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarCard:last-child {
+    grid-column: auto;
+  }
+
+  .schedulerContent {
+    grid-template-columns: 1fr;
+  }
+
+  .resourceFilters {
+    padding-right: 0;
+    padding-bottom: 10px;
+
+    border-right: 0;
+    border-bottom: 1px solid #e2e7ed;
+  }
+
+  .resourceFilters select F {
+    max-width: 300px;
+  }
+
+  .scheduleToolbar {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .dateControls {
+    width: 100%;
+  }
+
+  .dateControls strong {
+    margin-right: auto;
+  }
+
+  .bottomSections {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomSections .card:last-child {
+    grid-column: auto;
+  }
+}
+
+/* ---------------------------------------------------------
+   560
+--------------------------------------------------------- */
+
+@media (max-width: 560px) {
+  .topActions {
+    margin-left: auto;
+  }
+
+  .userDetails,
+  .user>span {
+    display: none;
+  }
+
+  .titleSection h1 {
+    font-size: 15px;
+  }
+
+  .patientGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalityGroup {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .datePanel {
+    width: 100%;
+
+    max-width: none;
+  }
+
+  .calendarBox {
+    max-width: 330px;
+  }
+
+  .dateControls {
+    flex-wrap: wrap;
+  }
+
+  .dateControls strong {
+    width: 100%;
+
+    margin-bottom: 2px;
+  }
+
+  .selectedSlot {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .selectedSlot button {
+    width: 100%;
+    
+    margin-left: 0;
+  }
+
+  .footerActions {
+    align-items: stretch;
+
+    flex-direction: column;
+
+    gap: 7px;
+  }
+
+  .footerActions>div {
+    width: 100%;
+  }
+
+  .draftButton,
+  .confirmButton {
+    flex: 1;
+  }
+
+  .clearButton {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------------------------------
+   400
+--------------------------------------------------------- */
+
+@media (max-width: 400px) {
+  .card {
+    padding: 8px;
+  }
+
+  .modalityGroup {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .priorityGroup button,
+  .contrastGroup button {
+    flex: 1;
+  }
+
+  .viewButtons {
+    width: 100%;
+  }
+
+  .viewButtons button {
+    flex: 1;
+  }
+}
+
+/* =========================================================
+   QUICK ACTION MODALS
+========================================================= */
+
+.quickActionModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+
+  background: rgba(15, 30, 50, 0.45);
+}
+
+.quickActionModal {
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(20, 40, 70, 0.18);
+}
+
+.quickActionModalWide {
+  max-width: 860px;
+}
+
+.quickActionModalHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex: 0 0 auto;
+
+  padding: 14px 18px;
+
+  background: #eaf3fb;
+  border-bottom: 1px solid #dce9f5;
+}
+
+.quickActionModalHeaderIcon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #1765a3;
+  color: #fff;
+
+  font-size: 13px;
+}
+
+.quickActionModalTitle {
+  flex: 1;
+
+  color: #173e69;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.quickActionModalClose {
+  flex: 0 0 auto;
+  border: 0;
+  background: #ed0000fa;
+  color: #1c2e47;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 25%;
+  width: 25px;
+  min-width: 25px;
+  align-items: center;
+  padding: 2px;
+  margin: 0px;
+
+}
+
+.quickActionModalClose:hover {
+  color: #e11b59;
+}
+
+.quickActionModalBody {
+  overflow-y: auto;
+
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.quickActionModalDescription {
+  margin: 0;
+
+  color: #667388;
+
+  font-size: 11px;
+}
+
+.quickActionPatientCard {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  border-radius: 6px;
+
+  background: #f2f8fd;
+}
+
+.quickActionPatientAvatar {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e3edf7;
+  color: #1765a3;
+
+  font-size: 17px;
+}
+
+.quickActionPatientCard>div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.quickActionPatientCard strong {
+  color: #000613;
+  font-size: 15px;
+}
+
+.quickActionPatientCard span {
+  color: #00060e;
+  font-size: 12px;
+}
+
+.quickActionQrArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+}
+
+.quickActionQrPlaceholder {
+  width: 180px;
+  height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dfe5ed;
+  border-radius: 4px;
+
+  background: repeating-conic-gradient(#1a1a1a 0% 25%, #fff 0% 50%) 0 0 / 12px 12px;
+
+  color: transparent;
+
+  font-size: 60px;
+}
+
+.quickActionQrCaption {
+  margin: 0;
+
+  color: #7a8798;
+
+  font-size: 10px;
+  text-align: center;
+}
+
+.quickActionFieldLabel {
+  color: #526177;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.quickActionShareOptions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.quickActionShareOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 6px;
+
+  background: #fff;
+  color: #536277;
+
+  font-size: 11px;
+  width: 100px;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.quickActionShareOption span {
+  font-size: 16px;
+}
+
+.quickActionShareOptionActive {
+  border-color: #1765a3;
+  background: #eef6fd;
+  color: #1765a3;
+}
+
+.quickActionPhoneRow {
+  display: flex;
+}
+
+.quickActionCountryCode {
+  display: flex;
+  align-items: center;
+
+  padding: 0 10px;
+
+  border: 1px solid #d8dfe8;
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+
+  background: #f8fafc;
+
+  color: #536277;
+
+  font-size: 11px;
+}
+
+.quickActionPhoneRow input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+
+  box-sizing: border-box;
+
+  padding: 0 10px;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 0 4px 4px 0;
+
+  outline: 0;
+
+  font-size: 11px;
+}
+
+.quickActionEmailRow input {
+  width: 100%;
+  height: 32px;
+
+  box-sizing: border-box;
+
+  padding: 0 10px;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+
+  outline: 0;
+
+  font-size: 11px;
+}
+
+.quickActionSuccessNote {
+  padding: 8px 10px;
+
+  border-radius: 4px;
+
+  background: #eaf8f0;
+  color: #328354;
+
+  font-size: 11px;
+}
+
+.quickActionAppointmentCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #edf0f4;
+  border-radius: 6px;
+
+  background: #f8fafc;
+}
+
+.quickActionAppointmentCard>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.quickActionAppointmentCard span {
+  color: #7a8798;
+  font-size: 11px;
+}
+
+.quickActionAppointmentCard strong {
+  color: #3d4a5d;
+  font-size: 11px;
+}
+
+.quickActionSearchRow {
+  display: flex;
+  gap: 8px;
+}
+
+.quickActionSearchInput {
+  flex: 1;
+  min-width: 0;
+
+  position: relative;
+}
+
+.quickActionSearchInput input {
+  width: 100%;
+  height: 32px;
+
+  box-sizing: border-box;
+
+  padding: 0 30px 0 10px;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+
+  outline: 0;
+
+  font-size: 11px;
+}
+
+.quickActionSearchInput span {
+  position: absolute;
+  top: 30%;
+  right: 9px;
+  transform: translateY(-50%);
+  color: #0957d6;
+  font-size: 20px;
+}
+
+.quickActionSearchWrapper {
+  position: relative;
+}
+
+.quickActionSearchSuggestions {
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  margin-top: 4px;
+
+  max-height: 180px;
+
+  overflow-y: auto;
+
+  border: 1px solid #d8dfe8;
+  border-radius: 4px;
+
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(20, 40, 70, 0.12);
+}
+
+.quickActionSearchSuggestion {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  width: 100%;
+
+  padding: 8px 10px;
+
+  border: 0;
+  border-bottom: 1px solid #edf0f4;
+
+  background: #fff;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.quickActionSearchSuggestion:last-child {
+  border-bottom: 0;
+}
+
+.quickActionSearchSuggestion:hover {
+  background: #f7fbff;
+}
+
+.quickActionSearchSuggestion strong {
+  color: #2e3e54;
+  font-size: 11px;
+}
+
+.quickActionSearchSuggestion span {
+  color: #7a8798;
+  font-size: 10px;
+}
+
+.quickActionTable {
+  border: 1px solid #edf0f4;
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.quickActionTableHeader,
+.quickActionTableRow {
+  display: grid;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+.quickActionTableHeader>span,
+.quickActionTableRow>span {
+  min-width: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.quickActionTableRowWithActions {
+  grid-template-columns: 0.9fr 1fr 0.7fr 1.3fr 0.6fr 0.9fr 0.8fr;
+}
+
+.quickActionTableRowPlain {
+  grid-template-columns: 0.9fr 1fr 0.7fr 1.3fr 0.9fr;
+}
+
+.quickActionTableHeader {
+  min-height: 34px;
+
+  padding: 0 10px;
+
+  background: #f8fafc;
+
+  color: #748094;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.quickActionTableRow {
+  min-height: 42px;
+
+  padding: 0 10px;
+
+  border-top: 1px solid #edf0f4;
+
+  background: #fff;
+
+  color: #536176;
+
+  font-size: 11px;
+}
+
+.quickActionStatusBadge {
+  width: max-content;
+
+  padding: 3px 6px;
+
+  border-radius: 4px;
+
+  background: #eaf8f0;
+  color: #328354;
+
+  font-size: 10px;
+}
+
+.quickActionViewButton {
+  padding: 3px 8px;
+
+  border: 1px solid #a3c0da;
+  border-radius: 4px;
+
+  background: #fff;
+  color: #1765a3;
+
+  font-size: 10px;
+  min-width: 50px;
+  width: 70%;
+  cursor: pointer;
+}
+
+.quickActionTabs {
+  display: flex;
+  gap: 14px;
+
+  border-bottom: 1px solid #edf0f4;
+}
+
+.quickActionTabs button {
+  padding: 6px 0;
+
+  border: 0;
+  border-bottom: 2px solid transparent;
+
+  background: transparent;
+
+  color: #667388;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.quickActionTabActive {
+  border-bottom-color: #1765a3 !important;
+  color: #1765a3 !important;
+  font-weight: 600;
+}
+
+.quickActionFooter {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding-top: 4px;
+}
+
+.quickActionButtonPrimary,
+.quickActionButtonSecondary {
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0px;
+  cursor: pointer;
+}
+
+.quickActionButtonPrimary {
+  border: 1px solid #1765a3;
+  background: #1765a3;
+  color: #fff;
+}
+
+.quickActionButtonSecondary {
+  border: 1px solid #d5dce5;
+  background: #fff;
+  color: #58677b;
+}
+
+/* Theme support: the app toggles data-theme on <html>; this page follows it. */
+:global([data-theme='dark']) .page {
+  --calendar-surface: #172535;
+  --calendar-surface-raised: #1d2e42;
+  --calendar-surface-soft: #111d2b;
+  --calendar-border: #35495f;
+  --calendar-border-soft: #2b3d52;
+  --calendar-text: #e5edf7;
+  --calendar-muted: #a6b6c9;
+  --calendar-accent: #70b4ec;
+  background: #0e1927;
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .topBar,
+:global([data-theme='dark']) .globalSearch,
+:global([data-theme='dark']) .card,
+:global([data-theme='dark']) .sidebarCard,
+:global([data-theme='dark']) .calendarBox,
+:global([data-theme='dark']) .quickActionModal,
+:global([data-theme='dark']) .quickActionShareOption,
+:global([data-theme='dark']) .quickActionAppointmentCard,
+:global([data-theme='dark']) .quickActionSearchSuggestions,
+:global([data-theme='dark']) .quickActionSearchSuggestion,
+:global([data-theme='dark']) .quickActionTableRow,
+:global([data-theme='dark']) .resourceTimeline {
+  background-color: var(--calendar-surface);
+  border-color: var(--calendar-border);
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .topBar,
+:global([data-theme='dark']) .user,
+:global([data-theme='dark']) .timelineRow,
+:global([data-theme='dark']) .listView,
+:global([data-theme='dark']) .listRow,
+:global([data-theme='dark']) .resourceTimelineScroll,
+:global([data-theme='dark']) .resourceTimelineRow,
+:global([data-theme='dark']) .quickActionTable,
+:global([data-theme='dark']) .quickActionTableRow,
+:global([data-theme='dark']) .quickActionTabs {
+  border-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .menuButton,
+:global([data-theme='dark']) .topActions > button,
+:global([data-theme='dark']) .titleSection h1,
+:global([data-theme='dark']) .sectionTitle,
+:global([data-theme='dark']) .dateControls strong,
+:global([data-theme='dark']) .resourceName strong,
+:global([data-theme='dark']) .listViewSummary strong,
+:global([data-theme='dark']) .selectedSlot strong,
+:global([data-theme='dark']) .sidebarCard h3,
+:global([data-theme='dark']) .summaryRows strong,
+:global([data-theme='dark']) .availabilityRows strong,
+:global([data-theme='dark']) .upcomingAppointment strong,
+:global([data-theme='dark']) .quickActionModalTitle,
+:global([data-theme='dark']) .quickActionPatientCard strong,
+:global([data-theme='dark']) .quickActionPatientCard span,
+:global([data-theme='dark']) .quickActionAppointmentCard strong,
+:global([data-theme='dark']) .quickActionSearchSuggestion strong,
+:global([data-theme='dark']) .resourceTimelineCorner,
+:global([data-theme='dark']) .resourceTimelineResource strong {
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .titleSection p,
+:global([data-theme='dark']) .sectionTitle small,
+:global([data-theme='dark']) .formGroup label,
+:global([data-theme='dark']) .datePanel h4,
+:global([data-theme='dark']) .dateControls button,
+:global([data-theme='dark']) .resourceFilters h4,
+:global([data-theme='dark']) .resourceFilters label:not(.checkLabel),
+:global([data-theme='dark']) .checkLabel,
+:global([data-theme='dark']) .hourHeader,
+:global([data-theme='dark']) .hoursHeader span,
+:global([data-theme='dark']) .resourceName span,
+:global([data-theme='dark']) .legend,
+:global([data-theme='dark']) .emptyState,
+:global([data-theme='dark']) .listViewSummary span,
+:global([data-theme='dark']) .listHeader,
+:global([data-theme='dark']) .selectedSlot,
+:global([data-theme='dark']) .summaryRows span,
+:global([data-theme='dark']) .availabilityRows label,
+:global([data-theme='dark']) .quickActions button,
+:global([data-theme='dark']) .upcomingEmptyState,
+:global([data-theme='dark']) .upcomingAppointment span,
+:global([data-theme='dark']) .upcomingAppointment small,
+:global([data-theme='dark']) .upcomingAppointment b,
+:global([data-theme='dark']) .quickActionModalDescription,
+:global([data-theme='dark']) .quickActionFieldLabel,
+:global([data-theme='dark']) .quickActionQrCaption,
+:global([data-theme='dark']) .quickActionAppointmentCard span,
+:global([data-theme='dark']) .quickActionSearchSuggestion span,
+:global([data-theme='dark']) .resourceTimelineResource span,
+:global([data-theme='dark']) .resourceTimelineResource small {
+  color: var(--calendar-muted);
+}
+
+:global([data-theme='dark']) .avatar,
+:global([data-theme='dark']) .resourceName,
+:global([data-theme='dark']) .resourceTimelineResource,
+:global([data-theme='dark']) .sidebarCard_upcoming,
+:global([data-theme='dark']) .hoursHeader,
+:global([data-theme='dark']) .listViewSummary,
+:global([data-theme='dark']) .listHeader,
+:global([data-theme='dark']) .resourceTimelineHeader,
+:global([data-theme='dark']) .resourceTimelineCorner,
+:global([data-theme='dark']) .resourceTimelineTrack,
+:global([data-theme='dark']) .quickActionModalHeader,
+:global([data-theme='dark']) .quickActionTableHeader,
+:global([data-theme='dark']) .quickActionCountryCode,
+:global([data-theme='dark']) .quickActionPatientCard {
+  background-color: var(--calendar-surface-raised);
+  border-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .sidebarCard_upcoming {
+  background-color: var(--calendar-surface);
+  border-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .upcomingAppointment {
+  background-color: transparent;
+  border-bottom-color: var(--calendar-border-soft);
+}
+
+:global([data-theme='dark']) .globalSearch input,
+:global([data-theme='dark']) .formGroup input,
+:global([data-theme='dark']) .formGroup select,
+:global([data-theme='dark']) .formGroup textarea,
+:global([data-theme='dark']) .resourceFilters select,
+:global([data-theme='dark']) .modeRow button,
+:global([data-theme='dark']) .dateControls button,
+:global([data-theme='dark']) .viewButtons button,
+:global([data-theme='dark']) .quickActionPhoneRow input,
+:global([data-theme='dark']) .quickActionEmailRow input,
+:global([data-theme='dark']) .quickActionSearchInput input,
+:global([data-theme='dark']) .quickActionViewButton,
+:global([data-theme='dark']) .clearButton,
+:global([data-theme='dark']) .draftButton {
+  background-color: var(--calendar-surface-soft);
+  border-color: var(--calendar-border);
+  color: var(--calendar-text);
+  color-scheme: dark;
+}
+
+:global([data-theme='dark']) .formGroup input:read-only,
+:global([data-theme='dark']) .formGroup select:disabled,
+:global([data-theme='dark']) .quickActions button:disabled {
+  background-color: #202d3d;
+  color: #8799ad;
+}
+
+:global([data-theme='dark']) .walkInButton,
+:global([data-theme='dark']) .priorityGroup button,
+:global([data-theme='dark']) .contrastGroup button,
+:global([data-theme='dark']) .modalityButton,
+:global([data-theme='dark']) .appointmentTabs button,
+:global([data-theme='dark']) .uploadBox,
+:global([data-theme='dark']) .quickActionButtonSecondary {
+  background-color: var(--calendar-surface-soft);
+  border-color: var(--calendar-border);
+  color: var(--calendar-muted);
+}
+
+:global([data-theme='dark']) .walkInButton:hover,
+:global([data-theme='dark']) .modalityButton:hover,
+:global([data-theme='dark']) .upcomingAppointment:hover,
+:global([data-theme='dark']) .quickActionSearchSuggestion:hover {
+  background-color: #263d56;
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .priorityActive {
+  background: #4b4022 !important;
+  border-color: #a88a45 !important;
+  color: #f4d88d !important;
+}
+
+:global([data-theme='dark']) .contrastActive,
+:global([data-theme='dark']) .modalitySelected,
+:global([data-theme='dark']) .appointmentTabs .activeTab,
+:global([data-theme='dark']) .quickActionShareOptionActive {
+  background: #1d3a56;
+  border-color: #5686b2;
+  color: #acd7fb;
+}
+
+:global([data-theme='dark']) .contrastActive {
+  background: #1d3a56 !important;
+  border-color: #5686b2 !important;
+  color: #acd7fb !important;
+}
+
+:global([data-theme='dark']) .formGroup input:focus,
+:global([data-theme='dark']) .formGroup select:focus,
+:global([data-theme='dark']) .formGroup textarea:focus,
+:global([data-theme='dark']) .quickActionPhoneRow input:focus,
+:global([data-theme='dark']) .quickActionEmailRow input:focus,
+:global([data-theme='dark']) .quickActionSearchInput input:focus {
+  border-color: var(--calendar-accent);
+  box-shadow: 0 0 0 2px rgba(112, 180, 236, 0.18);
+}
+
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar) {
+  --lm-background-color: #172535;
+  --lm-background-color-highlight: #263d56;
+  --lm-background-color-active: #314d68;
+  --lm-background-color-header: #20344a;
+  --lm-font-color: #e5edf7;
+  --lm-font-grayout: #74869b;
+  --lm-border-color: #35495f;
+  --lm-border-color-light: #2b3d52;
+  --lm-border-color-highlight: #56728e;
+  background: var(--calendar-surface);
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-labels),
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-weekdays),
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-content > div) {
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-content > div[data-grey='true']) {
+  color: #74869b;
+}
+
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-content > div[data-selected='true']),
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-content > div:hover) {
+  background-color: #314d68;
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-content > div[data-start='true']),
+:global([data-theme='dark']) .calendarContainer :global(.lm-calendar-content > div[data-end='true']) {
+  background-color: #347cb6;
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .datePanel h4,
+:global([data-theme='dark']) .dateControls button,
+:global([data-theme='dark']) .resourceHeader,
+:global([data-theme='dark']) .hourHeader,
+:global([data-theme='dark']) .resourceTimelineHour {
+  border-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .timelineRow,
+:global([data-theme='dark']) .resourceTimelineRow {
+  border-bottom-color: var(--calendar-border);
+  border-top-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .resourceHeader,
+:global([data-theme='dark']) .hourHeader,
+:global([data-theme='dark']) .hoursHeader span,
+:global([data-theme='dark']) .resourceTimelineHour {
+  border-right-color: var(--calendar-border-soft);
+}
+
+:global([data-theme='dark']) .resourceOperatingArea {
+  background: rgba(42, 61, 82, 0.5);
+}
+
+:global([data-theme='dark']) .timelineAppointment strong,
+:global([data-theme='dark']) .timelineAppointment span,
+:global([data-theme='dark']) .timelineAppointment .appointmentTime {
+  color: #e8f0fa;
+}
+
+:global([data-theme='dark']) .booked,
+:global([data-theme='dark']) .bookedBadge {
+  background: #23415a;
+  border-color: #4f84ad;
+  color: #c5e4fb;
+}
+
+:global([data-theme='dark']) .confirmed,
+:global([data-theme='dark']) .confirmedBadge,
+:global([data-theme='dark']) .statusConfirmed {
+  background: #1c433b;
+  border-color: #438b70;
+  color: #a9e7ca !important;
+}
+
+:global([data-theme='dark']) .hold,
+:global([data-theme='dark']) .holdBadge,
+:global([data-theme='dark']) .statusDraft {
+  background: #463c25;
+  border-color: #9d8243;
+  color: #f2d98f !important;
+}
+
+:global([data-theme='dark']) .maintenance,
+:global([data-theme='dark']) .maintenanceBadge {
+  background: #462c35;
+  border-color: #9e5361;
+  color: #ffc0c6;
+}
+
+:global([data-theme='dark']) .unavailable,
+:global([data-theme='dark']) .unavailableBadge,
+:global([data-theme='dark']) .statusPending {
+  background: #293646;
+  border-color: #526174;
+  color: #c0ccda !important;
+}
+
+:global([data-theme='dark']) .listHeader,
+:global([data-theme='dark']) .listRow,
+:global([data-theme='dark']) .listViewSummary,
+:global([data-theme='dark']) .quickActionTableHeader,
+:global([data-theme='dark']) .quickActionTableRow {
+  border-bottom-color: var(--calendar-border-soft);
+  border-top-color: var(--calendar-border-soft);
+  color: var(--calendar-muted);
+}
+
+:global([data-theme='dark']) .listRow:not(:disabled):hover {
+  background: #27577d;
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .selectedSlot {
+  background: var(--calendar-surface-raised);
+  border-color: var(--calendar-border);
+  color: var(--calendar-muted);
+}
+
+:global([data-theme='dark']) .resourceTimelineTrack {
+  background-color: #1a293a;
+  background-image: linear-gradient(to right, #34485e 1px, transparent 1px);
+}
+
+:global([data-theme='dark']) .resourceTimelineWorkingHours {
+  background: #24374c;
+  border-right-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .resourceTimelineMaintenance {
+  background: #56343d;
+  color: #ffd4d8;
+}
+
+:global([data-theme='dark']) .resourceTimelineAvailable {
+  background: #2869a2;
+  border-color: #5a9bd4;
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .resourceTimelineBooked {
+  background: #27634b;
+  border-color: #54a37a;
+  color: #effff7;
+}
+
+:global([data-theme='dark']) .resourceTimelineUnavailable {
+  background: #3a343c;
+  color: #d7cbd3;
+}
+
+:global([data-theme='dark']) .resourceTimelineEvent[data-tooltip]::after {
+  background: #e5edf7;
+  color: #152235;
+}
+
+:global([data-theme='dark']) .uploadBox:hover {
+  background: #20354a;
+  border-color: #5c83a6;
+}
+
+:global([data-theme='dark']) .statusPending {
+  background: #293646;
+}
+
+:global([data-theme='dark']) .quickActionModalHeader {
+  background: #20344a;
+  border-bottom-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .quickActionModalClose {
+  background: #702f3b;
+  color: #ffe4e6;
+}
+
+:global([data-theme='dark']) .quickActionPhoneRow input,
+:global([data-theme='dark']) .quickActionEmailRow input,
+:global([data-theme='dark']) .quickActionSearchInput input {
+  background: var(--calendar-surface-soft);
+  border-color: var(--calendar-border);
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .quickActionSearchSuggestion {
+  border-bottom-color: var(--calendar-border-soft);
+}
+
+:global([data-theme='dark']) .quickActionSearchSuggestion:hover,
+:global([data-theme='dark']) .quickActionViewButton:hover {
+  background: #263d56;
+}
+
+:global([data-theme='dark']) .quickActionStatusBadge,
+:global([data-theme='dark']) .quickActionSuccessNote {
+  background: #1c433b;
+  color: #a9e7ca;
+}
+
+:global([data-theme='dark']) .quickActionQrPlaceholder {
+  border-color: var(--calendar-border);
+  background: repeating-conic-gradient(#dce6f1 0% 25%, #26364a 0% 50%) 0 0 / 12px 12px;
+}
+
+:global([data-theme='dark']) .quickActionTabs {
+  border-bottom-color: var(--calendar-border);
+}
+
+:global([data-theme='dark']) .quickActionTabs button {
+  color: var(--calendar-muted);
+}
+
+:global([data-theme='dark']) .quickActionTabActive {
+  border-bottom-color: var(--calendar-accent) !important;
+  color: var(--calendar-accent) !important;
+}
+
+:global([data-theme='dark']) .upcomingHeader h3 {
+  color: var(--calendar-text);
+}
+
+:global([data-theme='dark']) .quickActionButtonSecondary {
+  background: var(--calendar-surface-soft);
+  border-color: var(--calendar-border);
+  color: var(--calendar-text);
+}

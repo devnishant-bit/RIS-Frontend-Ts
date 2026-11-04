@@ -4,6 +4,7 @@ import { ForbiddenPage } from '../features/auth/pages/ForbiddenPage'
 import { WorklistPage } from '../features/worklist/pages/WorklistPage'
 import { TatReportPage } from '../features/reports/pages/TatReportPage'
 import { InactiveReportPage } from '../features/reports/pages/InactiveReportPage'
+import Calendar1 from '../features/scheduling/pages/Calendar1'
 import { DemoFeaturePage } from '../shared/ui/DemoFeaturePage'
 import { useAuth } from '../shared/auth/useAuth'
 import type { Permission } from '../features/auth/types'
@@ -69,6 +70,8 @@ function renderAppPage(route: PageRoute) {
   if (route.path === routePaths.worklist) return <WorklistPage />
   if (route.path === routePaths.tatReport) return <TatReportPage />
   if (route.path === routePaths.inactiveReport) return <InactiveReportPage />
+  // TEMP: this is the destination used by the profile menu's Clinical Schedule shortcut.
+  if (route.path === routePaths.scheduling) return <Calendar1 />
   return <DemoFeaturePage title={route.title} parentPath={route.path} description={`The ${route.title} page from the parent application will be built here.`} sections={routePageSections[route.path]} />
 }
 

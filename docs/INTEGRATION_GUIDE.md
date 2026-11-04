@@ -79,6 +79,12 @@ The top-level `Header` import/render is currently commented out in `src/layouts/
 
 `src/routes/routePageSections.ts` maps route paths to named section specs. `src/routes/pageSectionComponents.ts` resolves those names to feature-owned section components. `DemoFeaturePage` composes them, and the current section files delegate to `PageSectionPlaceholder` for a shared demo box. Replace a placeholder's implementation in its own feature file when building that part; retain the route page as the composition owner.
 
+## Scheduling page component wiring
+
+`src/routes/AppRouter.tsx` mounts `src/features/scheduling/pages/Calendar1.tsx` for the scheduling route. `Calendar1` is a function component: React state is held with hooks, and a merge helper preserves the partial-state update behavior used by the original implementation. A mount effect fetches initial data and initializes CalendarJS; cleanup clears its host element. A state effect keeps the former patient/doctor synchronization behavior. Use hooks and feature-owned child components for new scheduling work; do not add class-based page or UI components.
+
+The only app-owned exception to the function-component rule is none: `AppErrorBoundary` is a function wrapper around the `react-error-boundary` package, which supplies the class-based React boundary behavior internally.
+
 ## Integration sequence for a pasted component
 
 1. Put the files in the feature folder and check the export (default/named) and actual CSS/hook/icon import names.

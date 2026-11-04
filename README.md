@@ -60,3 +60,7 @@ src/
 ```
 
 Styles for app-owned components belong in colocated `*.module.css` files. See [architecture](./docs/architecture.md) for CSS and component boundaries.
+
+App pages and UI components use function components and hooks. The error boundary is exposed as a function component through `react-error-boundary`.
+
+The global application font is Poppins. Its local fontsource imports are in `src/styles/fonts.css`; the global body font is set in `src/styles/global.css`. Keep feature-level typography inheriting that font unless a documented design requirement calls for an exception.

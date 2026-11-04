@@ -41,7 +41,7 @@
   width: 100%;
   min-height: auto;
 
-  padding: 18px 24px 50px;
+  /* padding: 18px 24px 50px; */
 
   box-sizing: border-box;
 
@@ -55,14 +55,8 @@
       #edf4f8 100%
     );
 
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
+  /* Previous stack: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif. */
+  font-family: inherit;
 }
 
 .inactiveReportContainer *,
@@ -1100,4 +1094,88 @@ button.inactiveReportSearch:active {
 
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Follow the app theme applied to <html data-theme="dark">. */
+:global([data-theme='dark']) .inactiveReportContainer {
+  --ink: #e6edf7;
+  --navy-900: #e6edf7;
+  --navy-800: #20344d;
+  --navy-700: #1b3048;
+  --accent: #75b8f0;
+  --accent-tint: #20364d;
+  --canvas: #111d2b;
+  --surface: #172535;
+  --border: #304255;
+  --border-strong: #465d74;
+  --muted: #bdc9d7;
+  --muted-soft: #9caec1;
+  --success: #65d49c;
+  --success-bg: #173b31;
+  --danger: #ff9c9c;
+  --danger-bg: #44282d;
+  --excel-green: #65d49c;
+  --pdf-red: #ff9c9c;
+  background: linear-gradient(135deg, #101a27 0%, #142233 48%, #101a27 100%);
+}
+
+:global([data-theme='dark']) .inactiveReportFilters,
+:global([data-theme='dark']) .inactiveReportPrintContainer {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+:global([data-theme='dark']) .inactiveReportFilters input[type='date'],
+:global([data-theme='dark']) .inactiveReportFilters input[type='text'] {
+  background: var(--canvas) !important;
+  border-color: var(--border-strong) !important;
+  color: var(--ink) !important;
+  color-scheme: dark;
+}
+
+:global([data-theme='dark']) .inactiveReportTable thead th {
+  background: var(--navy-700);
+  border-bottom-color: var(--accent);
+}
+
+:global([data-theme='dark']) .inactiveReportTable tbody tr {
+  background: var(--surface);
+}
+
+:global([data-theme='dark']) .inactiveReportTable tbody tr:nth-child(even) {
+  background: #1b2b3d;
+}
+
+:global([data-theme='dark']) .inactiveReportTable tbody tr:hover {
+  background: var(--accent-tint);
+}
+
+:global([data-theme='dark']) .inactiveReportTable tbody td {
+  color: var(--ink);
+  border-bottom-color: var(--border);
+}
+
+:global([data-theme='dark']) .statusActive {
+  color: var(--success);
+  background: var(--success-bg);
+}
+
+:global([data-theme='dark']) .statusInactive {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+:global([data-theme='dark']) .inactiveReportPrint {
+  color: var(--ink);
+  background: var(--accent-tint);
+  border-color: var(--border-strong);
+}
+
+:global([data-theme='dark']) button.inactiveReportSearch {
+  background: #24679d;
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) button.inactiveReportSearch:hover {
+  background: #3082bf;
 }

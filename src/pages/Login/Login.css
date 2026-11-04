@@ -478,7 +478,8 @@ button:active {
   }
   .input-container input::placeholder {
     /* Add your desired font styles here */
-    font-family: Arial, sans-serif;
+    /* Previous stack: Arial, sans-serif. */
+    font-family: inherit;
     font-size: 1.5 rem;
     color: #999;
   }

@@ -49,10 +49,12 @@
 .tableWrapper::-webkit-scrollbar { width: 8px; }
 .tableWrapper::-webkit-scrollbar-track { background: transparent; }
 .tableWrapper::-webkit-scrollbar-thumb {
-  background: #ffffff26;
+  background: color-mix(in srgb, var(--table-text-muted) 40%, transparent);
   border-radius: 4px;
 }
-.tableWrapper::-webkit-scrollbar-thumb:hover { background: #ffffff3b; }
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--table-text-muted) 65%, transparent);
+}
 
 .table {
   width: 100%;
@@ -73,9 +75,11 @@
   font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
   vertical-align: middle;
   border-bottom: 1px solid var(--header-border);
   position: sticky;
@@ -88,9 +92,11 @@
   border-bottom: 1px solid var(--row-border);
   color: var(--table-text);
   vertical-align: middle;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
 }
 
 .table tbody tr {
@@ -109,19 +115,30 @@
 .table tbody tr:nth-child(even) { background: var(--row-even-bg); }
 
 .table tbody tr:hover {
-  background: var(--row-hover-bg);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  /* border-left-color: var(--row-hover-ring);
-  box-shadow: 0 0 0 1.5px var(--row-hover-ring); */
+  background-color: rgba(59, 130, 246, 0.07);   /* very light blue */
+  background-image: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   z-index: 1;
+}
+
+.table tbody tr:hover td {
+  border-bottom-color: var(--row-border);       /* no coloured hairline */
+  box-shadow: none;
 }
 
 .table tbody td:first-child {
   box-shadow: inset 3px 0 0 transparent;
   transition: box-shadow 0.15s ease;
 }
+
+/* left bar keeps the modality colour */
+/* blue indicator bar on hover */
 .table tbody tr:hover td:first-child {
-  box-shadow: inset 3px 0 0 var(--row-hover-ring);
+  box-shadow: inset 3px 0 0 #2f4ca0;
+}
+
+:global([data-theme="dark"]) .table tbody tr:hover {
+  background-color: rgba(96, 165, 250, 0.10);
 }
 
 .skeletonRow td { height: 52px; }
@@ -166,7 +183,10 @@
 
 .personName {
   font-weight: 600; color: var(--table-text);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
   cursor: default;
 }
 
@@ -197,6 +217,7 @@
   border-radius: 999px;
   font-size: 10.5px;
   font-weight: 700;
+  white-space: nowrap;
 
   background: color-mix(in srgb, var(--s) 16%, transparent);
   border: 1px solid color-mix(in srgb, var(--s) 35%, transparent);
@@ -254,8 +275,8 @@
 
 .actions button:active { transform: scale(0.9); }
 
-.actions button:nth-child(1) { color: #3b82f6; }
-.actions button:nth-child(1):hover { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.actions button:nth-child(1) { color: #2f4ca0; }
+.actions button:nth-child(1):hover { background: rgba(47, 76, 160, 0.15); color: #5b78d0; }
 
 .actions button:nth-child(2) { color: #14b8a6; }
 .actions button:nth-child(2):hover { background: rgba(20, 184, 166, 0.15); color: #2dd4bf; }
@@ -307,8 +328,8 @@
   transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
 }
 .paginationControls button:hover:not(:disabled) {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(47, 76, 160, 0.1);
+  border-color: rgba(47, 76, 160, 0.4);
   transform: translateY(-1px);
 }
 
@@ -316,8 +337,8 @@
 
 .paginationControls button:disabled { opacity: 0.4; cursor: not-allowed; }
 .pageActive {
-  background: #0284c7 !important;
-  border-color: #0284c7 !important;
+  background: #2f4ca0 !important;
+  border-color: #2f4ca0 !important;
   color: #fff !important;
   box-shadow: none;
 }
@@ -328,8 +349,7 @@
   font-size: 12px; color: var(--table-text); background: var(--select-bg);
   transition: border-color 0.15s ease;
 }
-.rowsPerPage select:hover { border-color: #3b82f6; }
-
+.rowsPerPage select:hover { border-color: #2f4ca0; }
 /* ---------- Modality chip: one base colour (--m) per modality, per theme ---------- */
 
 .modalityChip {
@@ -343,6 +363,7 @@
   background: color-mix(in srgb, var(--m) 22%, transparent);
   border: 1px solid color-mix(in srgb, var(--m) 50%, transparent);
   color: color-mix(in srgb, var(--m) 58%, black);   /* darkened text on light bg */
+  
 }
 
 /* Dark theme: lighten the text and strengthen the fill */
@@ -521,7 +542,7 @@
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #000000;
+  color: var(--table-text-muted);
   margin-bottom: 2px;
 }
 .mGrid dd { margin: 0; font-size: 12.5px; color: var(--table-text); overflow-wrap: anywhere; }
@@ -536,14 +557,14 @@
   height: 40px;
   border: none;
   border-radius: 10px;
-  background: #0284c7;
+  background: #2f4ca0;
   color: #fff;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
-.mViewBtn:hover  { filter: brightness(1.08); }
+.mViewBtn:hover  { filter: brightness(0.85); }
 .mViewBtn:active { transform: scale(0.98); }
 
 @media (max-width: 640px) {
