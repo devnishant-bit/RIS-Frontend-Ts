@@ -72,6 +72,7 @@ function renderAppPage(route: PageRoute) {
   if (route.path === routePaths.inactiveReport) return <InactiveReportPage />
   // TEMP: this is the destination used by the profile menu's Clinical Schedule shortcut.
   if (route.path === routePaths.scheduling) return <Calendar1 />
+  // if(route)
   return <DemoFeaturePage title={route.title} parentPath={route.path} description={`The ${route.title} page from the parent application will be built here.`} sections={routePageSections[route.path]} />
 }
 
