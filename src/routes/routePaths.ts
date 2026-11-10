@@ -5,6 +5,7 @@ export const routePaths = {
   reports: '/reports',
   editor: '/editor',
   settings: '/master/settings',
+  chat: '/chat',
   userCreation: '/master/user/userCreation',
   userGroup: '/master/user/userGroup',
   userRights: '/master/user/userRights',

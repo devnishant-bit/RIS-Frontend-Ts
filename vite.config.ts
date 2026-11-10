@@ -7,5 +7,19 @@ export default defineConfig({
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
-  server: { port: 3001, strictPort: true },
+  server: { 
+    port: 3000, 
+    strictPort: true,
+    proxy: {
+      '/tiservice': {
+        target: 'http://localhost:2000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/socket.io': {
+        target: 'http://localhost:2000',
+        ws: true,
+      },
+    },
+  },
 })

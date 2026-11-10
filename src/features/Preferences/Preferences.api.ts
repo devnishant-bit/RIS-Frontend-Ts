@@ -1,13 +1,7 @@
-import axios from 'axios';
-import config from '../../shared/api/config'; // adjust to wherever your new app keeps apiBaseUrl
-import type {
-  ModuleItem,
-  PreferenceDef,
-  Product,
-  UserPreferenceRow,
-} from './Preferences.utils';
+import { httpClient } from '@/shared/api/httpClient';
+import type { ModuleItem, PreferenceDef, Product, UserPreferenceRow } from './Preferences.utils'
 
-const BASE = `${config.apiBaseUrl}/tiservice`;
+
 
 export interface SavePreferenceItem {
   preferencevalue: string | null;
@@ -19,7 +13,7 @@ export interface SavePreferenceItem {
 
 export async function fetchProducts(): Promise<Product[]> {
   try {
-    const { data } = await axios.post(`${BASE}/preference/getproductpreference`, {});
+    const { data } = await httpClient.post('/tiservice/preference/getproductpreference', {});
     if (data.retval === 'SUCCESS') return data.productlist || [];
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -29,7 +23,7 @@ export async function fetchProducts(): Promise<Product[]> {
 
 export async function fetchModules(productId: number): Promise<ModuleItem[]> {
   try {
-    const { data } = await axios.post(`${BASE}/preference/getmodulepreference`, {
+    const { data } = await httpClient.post('/tiservice/preference/getmodulepreference', {
       productid: productId,
     });
     if (data.retval === 'SUCCESS') return data.modulelist || [];
@@ -41,7 +35,7 @@ export async function fetchModules(productId: number): Promise<ModuleItem[]> {
 
 export async function fetchPreferences(moduleId: number): Promise<PreferenceDef[]> {
   try {
-    const { data } = await axios.post(`${BASE}/preference/getpreference`, {
+    const { data } = await httpClient.post('/tiservice/preference/getpreference', {
       moduleid: moduleId,
     });
     if (data.retval === 'SUCCESS') return data.preferencelist || [];
@@ -56,7 +50,7 @@ export async function fetchUserPreferenceRows(
   userid: string | null
 ): Promise<UserPreferenceRow[] | null> {
   try {
-    const { data } = await axios.post(`${BASE}/preference/getuserpreference`, { userid });
+    const { data } = await httpClient.post('/tiservice/preference/getuserpreference', { userid });
     if (data.retval === 'SUCCESS') return data.userpreference || [];
   } catch (error) {
     console.error('Error fetching user preferences:', error);
@@ -69,7 +63,7 @@ const ALL_EDITIONS = ['Pro', 'Prime', 'Premium'];
 // Returns the editions the user is entitled to (their own and everything below it).
 export async function fetchAvailableEditions(userid: string | null): Promise<string[] | null> {
   try {
-    const { data } = await axios.post(`${BASE}/user/getuseredition`, {
+    const { data } = await httpClient.post('/tiservice/user/getuseredition', {
       userid,
       moduleid: 2,
     });
@@ -84,5 +78,5 @@ export async function fetchAvailableEditions(userid: string | null): Promise<str
 }
 
 export function saveUserPreferences(preferencearray: SavePreferenceItem[]) {
-  return axios.post(`${BASE}/preference/saveuserpreference`, { preferencearray });
+  return httpClient.post('/tiservice/preference/saveuserpreference', { preferencearray });
 }

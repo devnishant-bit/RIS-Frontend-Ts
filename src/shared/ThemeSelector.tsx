@@ -1,5 +1,5 @@
-import { useTheme } from '../shared/Theme/ThemeProvider'
-import type { ThemeMode } from '../shared/Theme/ThemeProvider'
+import useTheme, { type ThemeMode } from "./Theme/useTheme"
+
 
 export function ThemeSelector() {
   const { mode, setMode } = useTheme()

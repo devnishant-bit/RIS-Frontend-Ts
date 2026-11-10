@@ -3,7 +3,6 @@ import type { ChangeEvent, FormEvent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { SearchIcon } from './worklistFiltersIcon';
 import type { SearchIconName } from './worklistFiltersIcon';
-import { useTheme } from '@/shared/Theme/ThemeProvider';
 import { useMediaQuery, MOBILE_QUERY } from '@/shared/hooks/useMediaQuery';
 
 import {
@@ -24,6 +23,7 @@ import type {
   StudyStatus,
 } from './worklistFiltersData';
 import styles from './WorklistFilters.module.css';
+import useTheme from '@/shared/Theme/useTheme';
 
 export type SearchBarTheme = 'light' | 'dark';
 

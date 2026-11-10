@@ -3,6 +3,9 @@ import { useMemo, useState } from 'react'
 import { demoStudies } from '../data/demoStudies'
 import type { WorklistStatus } from '../types'
 import SearchBar from '../components/WorklistFilters/WorklistFilters'
+import { DoctorModal, type Doctor } from '../../assign-doctor'
+import { ClinicalNotesModal, type NotesStudy, type NotesUser } from '../../clinical-notes'
+
 import {
   ASSIGNED_DOCTOR_OPTIONS,
   MODALITIES,
@@ -29,11 +32,26 @@ const statusToWorklistStatuses: Record<StudyStatus, WorklistStatus[]> = {
   Final: ['Reported'],
 }
 
+type AssignedDoctorRow = { doctorId?: string | number; doctorName?: string }
+
 export function WorklistPage() {
   // const { user } = useAuth()
   const [appliedFilters, setAppliedFilters] = useState<SearchFilters | null>(null)
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(5)
+  const [doctorModalExamId, setDoctorModalExamId] = useState<string | number | null>(null)
+  // assignments saved through the modal, keyed by examId (overrides the demo value in the table)
+  const [assignedOverrides, setAssignedOverrides] = useState<Record<string, AssignedDoctorRow[]>>({})
+  const [notesStudy, setNotesStudy] = useState<NotesStudy | null>(null)
+  const [notesOpen, setNotesOpen] = useState(false)
+
+  const currentUser: NotesUser = useMemo(() => {
+    const id = localStorage.getItem('userid') ?? ''
+    const name = localStorage.getItem('username') ?? 'Unknown user'
+    const initials =
+      name.split(/\s+/).filter(Boolean).map((p) => p[0]).slice(0, 2).join('').toUpperCase() || '?'
+    return { id, name, initials, tone: 'radiologist' }
+  }, [])
 
   const filteredStudies = useMemo(() => {
     if (!appliedFilters) return demoStudies
@@ -92,7 +110,9 @@ export function WorklistPage() {
     genderAge: `${study.gender} / ${study.patientAge}`,
     procedureDescription: study.procedureDescription,
     study: study.modality,
-    assigneddoctor: study.assignedDoctor ? [{ doctorName: study.assignedDoctor }] : [],
+    assigneddoctor:
+      assignedOverrides[String(study.examId)] ??
+      (study.assignedDoctor ? [{ doctorName: study.assignedDoctor }] : []),
     refDoctor: study.referringPhysician,
     images: study.imageCount,
     reportStatus: {
@@ -100,13 +120,21 @@ export function WorklistPage() {
       'In Progress': 'Preliminary',
       Reported: 'Final',
     }[study.reportStatus],
-  })), [pagedStudies])
+  })), [pagedStudies, assignedOverrides])
 
   const totalPages = Math.max(1, Math.ceil(filteredStudies.length / pageSize))
 
   function resetFilters() {
     setAppliedFilters(null)
     setPage(1)
+  }
+
+  function handleDoctorsSaved(doctors: Doctor[]) {
+    if (doctorModalExamId === null) return
+    setAssignedOverrides((prev) => ({
+      ...prev,
+      [String(doctorModalExamId)]: doctors.map((d) => ({ doctorId: d.id, doctorName: d.docname })),
+    }))
   }
 
   return (
@@ -117,14 +145,6 @@ export function WorklistPage() {
       />
 
       <section className={styles.resultsCard} aria-label="Worklist results">
-        {/* <div className={styles.resultsHeading}>
-          <div>
-            <h2>Studies</h2>
-            <p>{filteredStudies.length} matching {filteredStudies.length === 1 ? 'study' : 'studies'}</p>
-          </div>
-          <span className={styles.resultIcon} aria-hidden="true">▤</span>
-        </div> */}
-
         <WorklistTable
           rows={tableRows}
           currentPage={page}
@@ -132,9 +152,33 @@ export function WorklistPage() {
           totalRecords={filteredStudies.length}
           rowsPerPage={pageSize}
           onPageChange={setPage}
+          onAssignDoctor={(row) => setDoctorModalExamId(row.examid)}
           onRowsPerPageChange={(value) => { setPageSize(value); setPage(1) }}
+          onOpenNotes={(row) => {
+            setNotesStudy({
+              studyId: String(row.examid),
+              patientId: String(row.patientId ?? ''),
+              patientName: row.patientName ?? '',
+              studyName: row.procedureDescription ?? '',
+              accession: row.accessionNo ?? '',
+            })
+            setNotesOpen(true)
+          }}
         />
       </section>
+
+      <DoctorModal
+        isOpen={doctorModalExamId !== null}
+        examid={doctorModalExamId}
+        onClose={() => setDoctorModalExamId(null)}
+        onSave={handleDoctorsSaved}
+      />
+      <ClinicalNotesModal
+        open={notesOpen}
+        study={notesStudy}
+        currentUser={currentUser}
+        onClose={() => setNotesOpen(false)}
+      />
     </section>
   )
 }

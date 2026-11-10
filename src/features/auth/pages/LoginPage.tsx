@@ -1,27 +1,52 @@
 import { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
-import type { DemoProfile } from '../types'
-import { useAuth } from '../../../shared/auth/useAuth'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import config from '../../../config'
 import styles from './LoginPage.module.css'
 
-export function LoginPage() {
-  const { status, user, loginAsDemo } = useAuth()
+export default function LoginPage() {
   const navigate = useNavigate()
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('')
   const [isSigningIn, setIsSigningIn] = useState(false)
 
-  if (status === 'loading') {
-    return <main className={styles.loading}>Preparing the demo sign-in…</main>
-  }
-
-  if (status === 'authenticated') {
-    return <Navigate to={user?.defaultPath ?? '/worklist'} replace />
-  }
-
-  async function signInAs(profile: DemoProfile) {
+  async function handleLogin() {
     setIsSigningIn(true)
+    setMessage('')
+
     try {
-      const demoUser = await loginAsDemo(profile)
-      navigate(demoUser.defaultPath, { replace: true })
+      const response = await axios.post(
+        `${config.apiBaseUrl}/tiservice/session/login`,
+        { username, password },
+        { withCredentials: true }
+      )
+
+      if (response.status === 200 && response.data === 'SUCCESS_NEWLOGIN') {
+        setMessage('Login successful!')
+        navigate('/worklist')
+      } else {
+        setMessage('Invalid Credentials')
+      }
+
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        const errorMessage = error.response.data
+
+        if (errorMessage === 'ERROR_USER') {
+          setMessage('User not found')
+        } else if (errorMessage === 'ERROR_PASSWORD') {
+          setMessage('Incorrect password')
+        } else if (errorMessage === 'ERROR_STATUS') {
+          setMessage('User Inactive')
+        } else {
+          setMessage('Invalid Credentials')
+        }
+      } else {
+        setMessage('Error during login')
+        console.error(error)
+      }
     } finally {
       setIsSigningIn(false)
     }
@@ -29,67 +54,34 @@ export function LoginPage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.card} aria-labelledby="login-title">
-        <div className={styles.brandMark} aria-hidden="true">R</div>
-        <p className={styles.eyebrow}>RIS / PACS FRONTEND</p>
-        <h1 id="login-title">Sign in to the demo</h1>
-        <p className={styles.description}>
-          Choose a demo profile to follow the same default-route priorities as the parent app.
-          No credentials are sent or stored.
-        </p>
-        <div className={styles.actions}>
-          <button
-            className={styles.primaryButton}
-            disabled={isSigningIn}
-            onClick={() => void signInAs('pacs')}
-            type="button"
-          >
-            Worklist user (RIS)
-          </button>
-          <button
-            className={styles.secondaryButton}
-            disabled={isSigningIn}
-            onClick={() => void signInAs('admin')}
-            type="button"
-          >
-            Worklist user (PACS)
-          </button>
-          <button
-            className={styles.secondaryButton}
-            disabled={isSigningIn}
-            onClick={() => void signInAs('admin')}
-            type="button"
-          >
-            Admin (opens Dashboard)
-          </button>
-          <button
-            className={styles.secondaryButton}
-            disabled={isSigningIn}
-            onClick={() => void signInAs('tele')}
-            type="button"
-          >
-            Teleradiology user
-          </button>
-          <button
-            className={styles.secondaryButton}
-            disabled={isSigningIn}
-            onClick={() => void signInAs('coordinator')}
-            type="button"
-          >
-            Coordinator user
-          </button>
-          <button
-            className={styles.secondaryButton}
-            disabled={isSigningIn}
-            onClick={() => void signInAs('client')}
-            type="button"
-          >
-            Client user
-          </button>
-        </div>
-        <div className={styles.disclaimer} role="note">
-          Demo authentication only. This does not validate a real RIS/PACS session.
-        </div>
+      <section className={styles.card}>
+        <h1>Login</h1>
+
+        <label>Username</label>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter username"
+        />
+
+        <label>Password</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password"
+        />
+
+        {message && <p>{message}</p>}
+
+        <button
+          type="button"
+          onClick={handleLogin}
+          disabled={isSigningIn}
+        >
+          {isSigningIn ? 'Signing in...' : 'Login'}
+        </button>
       </section>
     </main>
   )

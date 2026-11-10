@@ -5,7 +5,8 @@ import Sidebar from './components/Sidebar/Sidebar'
 import styles from './AppLayout.module.css'
 import { useAuth } from '../shared/auth/useAuth'
 import { routePaths } from '../routes/routePaths'
-import { useTheme } from '@/shared/Theme/ThemeProvider'
+import { useNotifications } from '@/features/notifications/useNotification'
+import useTheme from '@/shared/Theme/useTheme'
 
 export function AppLayout() {
   const { user, logout } = useAuth()
@@ -14,7 +15,8 @@ export function AppLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches,
   )
-  const showSidebar = Boolean(user?.isAdmin && location.pathname !== routePaths.editor)
+  const { notifications, unreadCount, markAllRead } = useNotifications()
+  const showSidebar = Boolean(user) && location.pathname !== routePaths.editor
   const bodyClassName = showSidebar
     ? `${styles.body} ${styles.withSidebar} ${sidebarCollapsed ? styles.sidebarCollapsed : styles.sidebarExpanded}`
     : `${styles.body} ${styles.withoutSidebar}`
@@ -32,6 +34,9 @@ export function AppLayout() {
               name: user?.displayName ?? 'Demo User',
               role: user?.isAdmin ? 'Administrator' : 'User',
             }}
+            notifications={notifications}          
+            unreadCount={unreadCount}              
+            onNotificationsOpen={markAllRead} 
             onLogout={logout}
             onCollapsedChange={setSidebarCollapsed}
           />

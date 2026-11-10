@@ -10,9 +10,9 @@ const getApiBaseUrl = (): string => {
     const port = window.location.port ? `:${window.location.port}` : '';
 
     // Build the API base URL
-    const apiBaseUrl = `${protocol}//${host}${port}`;
+    // const apiBaseUrl = `${protocol}//${host}${port}`;
 
-    // const apiBaseUrl = `http://localhost:2000`
+    const apiBaseUrl = `http://localhost:2000`
 
     return apiBaseUrl;
   };

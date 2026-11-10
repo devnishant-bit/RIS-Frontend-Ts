@@ -5,7 +5,7 @@ import { defaultSidebarMenu } from './menuItems';
 import type { SidebarNode } from './menuItems';
 import styles from './Sidebar.module.css';
 // import { createPortal } from 'react-dom';
-// import Preferences from '../../../features/Preferences/Preferences';
+import Preferences from '../../../features/Preferences/Preferences';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import { routePaths } from '@/routes/routePaths';
 
@@ -39,6 +39,8 @@ export interface SidebarProps {
   onLogout?: () => void;
   /** Lets the application shell resize its grid track with the sidebar. */
   onCollapsedChange?: (collapsed: boolean) => void;
+  unreadCount?: number;
+  onNotificationsOpen?: () => void;
 }
 
 type Popover = 'profile' | 'notifications' | null;
@@ -89,6 +91,8 @@ function SidebarInner({
   menu = defaultSidebarMenu,
   onLogout,
   onCollapsedChange,
+  unreadCount,
+  onNotificationsOpen,
 }: SidebarProps) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -312,22 +316,24 @@ function SidebarInner({
               />
             </button>
 
-            <button
+            {/* <button
               type="button"
               className={styles.notifButton}
               data-tooltip="Notifications"
-              aria-label={`Notifications${notifications.length ? `, ${notifications.length} new` : ''}`}
+              aria-label={`Notifications${badgeCount ? `, ${badgeCount} new` : ''}`}
               aria-haspopup="true"
               aria-expanded={popover === 'notifications'}
-              onClick={() =>
-                setPopover((value) => (value === 'notifications' ? null : 'notifications'))
-              }
+              onClick={() => {
+                const opening = popover !== 'notifications';
+                setPopover(opening ? 'notifications' : null);
+                if (opening) onNotificationsOpen?.();
+              }}
             >
               <Icon name="bell" className={styles.notifIcon} />
-              {notifications.length > 0 && (
-                <span className={styles.badge}>{notifications.length}</span>
+              {badgeCount > 0 && (
+                <span className={styles.badge}>{badgeCount > 9 ? '9+' : badgeCount}</span>
               )}
-            </button>
+            </button> */}
           </div>
 
           {popover === 'profile' && (
@@ -388,7 +394,7 @@ function SidebarInner({
               <div className={styles.notifHead}>
                 <span className={styles.notifHeadTitle}>Clinical alerts</span>
                 {notifications.length > 0 && (
-                  <span className={styles.notifCount}>{notifications.length} new</span>
+                  <span className={styles.notifCount}>{notifications.length}</span>
                 )}
               </div>
               {notifications.length === 0 ? (
