@@ -1,3 +1,5 @@
+// src/shared/api/config.ts
+
 export interface AppConfig {
   apiBaseUrl: string;
 }

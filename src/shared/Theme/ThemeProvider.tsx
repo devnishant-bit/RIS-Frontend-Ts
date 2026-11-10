@@ -1,12 +1,18 @@
 // shared/theme/ThemeProvider.tsx
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ThemeContext, type ResolvedTheme, type ThemeMode } from './useTheme'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
+export type ThemeMode = 'light' | 'dark' | 'system'
+type ResolvedTheme = 'light' | 'dark'
 
-
-
+interface ThemeContextValue {
+  mode: ThemeMode
+  theme: ResolvedTheme
+  setMode: (mode: ThemeMode) => void
+  toggleTheme: () => void
+}
 
 const STORAGE_KEY = 'app-theme'
+const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 const systemTheme = (): ResolvedTheme =>
   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -47,4 +53,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo(() => ({ mode, theme, setMode, toggleTheme }), [mode, theme, setMode, toggleTheme])
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+}
+
+export function useTheme() {
+  const ctx = useContext(ThemeContext)
+  if (!ctx) throw new Error('useTheme must be used inside ThemeProvider')
+  return ctx
 }

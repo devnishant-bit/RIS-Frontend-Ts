@@ -1,0 +1,535 @@
+/* Login App.css */
+
+/* Body Background Color */
+body {
+  margin: 0; /* Reset margin for body */
+}
+
+/* Login App Container */
+.login-App {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px) !important; /* Adjust height to account for header/footer */
+  flex-direction: column !important;
+  position: relative; /* Required for absolute positioning of shapes */
+}
+
+/* Header */
+.login-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 50px !important; /* Height of the header */
+  background-color: rgba(255, 255, 255, 0.9) !important; /* Slightly transparent white */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; /* Light shadow */
+  z-index: 10 !important; /* Ensure header is above other content */
+}
+
+/* Hospital Name */
+.hospital-name {
+  font-weight: bold !important;
+  font-size: 30px !important; /* Adjust the size as needed */
+}
+
+/* Login Wrapper */
+.login-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center ;
+  background: rgb(255 255 255 / 29%);
+  padding: 20px;
+  border-radius: 15px; /* Slightly curved edges */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+  width: 80vh; /* Total width of the box */
+  height: 50vh; /* Height of the entire wrapper */
+  max-width: 90%; /* Responsive width */
+}
+/* Image Container */
+.image-container {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  height: 100%; /* Fill the height of the wrapper */
+  overflow: hidden; /* Prevent overflow */
+  margin-left: -7px;
+  width: 46%;
+}
+
+
+.image-container p {
+  margin-top: 10px; /* Add spacing above the text */
+  font-size: 14px; /* Adjust font size */
+  color: #666; /* Optional: Text color */
+}
+.copyright {
+  font-size: 12px;
+  color: #555; /* Darker shade of gray */
+  margin-bottom: 10px;
+  text-align: center;
+  margin-left: -50px!important;
+}
+/* Image Style */
+.image-container img {
+  max-width: 60%; /* Ensure the image doesn't exceed the container width */
+  max-height: 60%; /* Ensure the image doesn't exceed the container height */
+  height: auto; /* Maintain the aspect ratio */
+  margin-bottom: 2px; /* Add spacing between images */
+}
+
+/* Login Container */
+.login-container {
+  flex: 1; /* Takes 50% of the width */
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent background for glass effect */
+  padding: 20px;
+  border-radius: 0 15px 15px 0; /* Rounded corners only on the right side */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  height: 94%; /* Reduced height to make it smaller */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the content vertically */
+  margin-right: -9px;
+  /* max-width: 212px; */
+}
+
+/* Icon Container */
+.icon-container {
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 10px !important; /* Space below the icon */
+}
+
+/* Icon Style */
+.icon {
+  height: 40px !important; /* Adjust the size of the icon */
+  width: auto !important; /* Maintain aspect ratio */
+  margin-top: -5px !important;
+}
+
+/* Input Container */
+.input-container {
+  margin-bottom: 7px !important; /* More space between fields */
+}
+
+/* Input Label Style */
+.input-container label {
+  display: block !important;
+  margin-bottom: 5px !important;
+  font-size: 14px !important; /* Smaller font size */
+  color: #333 !important; /* Darker text color for better readability */
+}
+
+/* Input and Select Style */
+.input-container input,
+.input-container select { /* Combined styles for input and select */
+  width: 100% !important; /* Make the width 100% of the container */
+  padding: 10px !important; /* Same padding to control height */
+  font-size: 14px !important; /* Same font size */
+  border: 1px solid rgba(176, 190, 197, 0.5) !important; /* Semi-transparent border */
+  border-radius: 5px !important; /* Same border radius */
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  max-width: 500px !important;
+}
+.input-container select.dropdown {
+  max-width: 10vh;
+  width: 100% ;
+}
+.input-container select.location {
+  max-width: 10vh;
+  width: 100% ;
+}
+
+/* Button Container */
+.button-container {
+  text-align: center;   /* Center text (including the button) */
+  margin-top: 20px;     /* Optional: Add some space above the button */
+}
+
+
+
+/* Button Style */
+button {
+  padding: 2px; /* Increased padding for a better look */
+  font-size: 14px; /* Same font size */
+  width: 150px; /* Button width */
+  background-color: #007bff; /* Blue background for the button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Move the buttons down */
+  flex: 1; /* Makes buttons take equal width */
+}
+
+/* login Button class Effect */
+.login {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #3a9bd9, #61dafb);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #09498d; /* Darker blue on hover */
+}
+
+/* Button Active Effect */
+button:active {
+  background-color: #004085; /* Even darker blue on active */
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for the footer */
+  padding: 19px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Context for Shapes */
+.context {
+  width: 100%;
+  position: absolute;
+  top: 50vh;
+}
+
+/* Background Area */
+.area {
+  background-color: #006cb6; /* Fallback color */
+  background-image: linear-gradient(43deg, #223d5b 0%, #006cb6 46%, #99c1f5 100%);
+  width: 100vw; /* Use viewport width for full coverage */
+  height: 100vh; /* Use viewport height for full coverage */
+  position: fixed; /* Ensure it stays in place */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  z-index: -1; /* Set it behind other elements */
+}
+
+/* Circles Animation */
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 80px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: animate 10s linear infinite;
+  bottom: -150px;
+}
+
+/* Individual Circles */
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 20s;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+
+/* Animation Keyframes */
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+
+
+/****************************************/
+
+/* Modal Background */
+.loginmodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.loginmodal-content {
+  background: rgba(255, 255, 255, 0.8); /* Glass effect */
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px 30px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Text */
+.loginmodal-content p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.loginmodalbutton {
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginmodalbutton:hover {
+  background-color: #357abd;
+  transform: scale(1.05);
+}
+
+.loginmodalbutton:active {
+  background-color: #285d9b;
+  transform: scale(0.98);
+}
+
+/* Modal Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 600px) {
+  .login-wrapper {
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    width: 80%;
+  }
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers items horizontally */
+    justify-content: flex-start;
+    width: 85%;
+    height: 45%;;
+    margin: 0 auto;        /* center the container itself */
+    border-radius: 15px;
+  }
+
+  .image-container img:first-of-type {
+    display: none;
+  }
+
+  .image-container img {
+    max-width: 60%; /* Ensure the image doesn't exceed the container width */
+    max-height: 60%; /* Ensure the image doesn't exceed the container height */
+    height: auto; /* Maintain the aspect ratio */
+    margin: 0;;
+  }
+
+  .login-container {
+    width: 85%;
+    margin: 0 auto;
+    border-radius: 15px;
+    height: 95%;
+  }
+}
+@media (min-width: 2000px) {
+  .loginmodal-content p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .input-container label {
+    display: block !important;
+    margin-bottom: 5px !important;
+    font-size: 2rem !important; /* Smaller font size */
+    color: #333 !important; /* Darker text color for better readability */
+  }
+  .input-container input,
+  .input-container select { /* Combined styles for input and select */
+    width: 100% !important; /* Make the width 100% of the container */
+    padding: 10px !important; /* Same padding to control height */
+    font-size: 1.5rem !important; /* Same font size */
+    border: 1px solid rgba(176, 190, 197, 0.5) !important; /* Semi-transparent border */
+    border-radius: 5px !important; /* Same border radius */
+    box-sizing: border-box !important; /* Include padding and border in element's total width/height */
+    max-width: 100% !important;
+  }
+  .input-container select.dropdown,
+  .input-container select.location {
+    max-width: 100%;
+    width: auto ;
+  }
+  .input-container input::placeholder {
+    /* Add your desired font styles here */
+    /* Previous stack: Arial, sans-serif. */
+    font-family: inherit;
+    font-size: 1.5 rem;
+    color: #999;
+  }
+  .button-container {
+    text-align: center;   /* Center text (including the button) */
+    margin-top: 20px;     /* Optional: Add some space above the button */
+    font-size: 2rem;
+  }
+  /* Button Style */
+  button {
+    padding: 2px; /* Increased padding for a better look */
+    font-size: 5rem; /* Same font size */
+    width: 150px; /* Button width */
+    background-color: #007bff; /* Blue background for the button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Move the buttons down */
+    flex: 1; /* Makes buttons take equal width */
+  }
+  /* login Button class Effect */
+  .login {
+    width: 100%;
+    padding: 10px;
+    font-size: 2rem;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, #3a9bd9, #61dafb);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+}
+
+.expiry-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expiry-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}

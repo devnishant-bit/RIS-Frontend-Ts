@@ -12,7 +12,6 @@ import {
   FaChevronRight,
 } from "react-icons/fa6";
 import { useMediaQuery, MOBILE_QUERY } from "./useMediaQuery";
-import { AssignedDoctorCell } from "../../../assign-doctor";
 
 export interface WorklistTableRow {
   examid: string | number;
@@ -52,7 +51,6 @@ export interface WorklistTableProps {
   onToggleFlag?: (row: WorklistTableRow) => void;
   onMore?: (row: WorklistTableRow) => void;
   loading?: boolean;
-  onAssignDoctor?: (row: WorklistTableRow) => void;
 }
 
 function initialsOf(name?: string): string {
@@ -101,7 +99,7 @@ export default function WorklistTable({
   onRowsPerPageChange,
   onView,
   onWebView,
-  onAssignDoctor,
+  onSelfAssign,
   onOpenReport,
   onOpenNotes,
   onOpenAttachments,
@@ -137,7 +135,7 @@ export default function WorklistTable({
                     <div className={styles.mCardTop}>
                       <div className={styles.mActions}>
                         <button data-action="webview" title="Web View" aria-label="Web View" onClick={() => onWebView?.(row)}><FaDesktop /></button>
-                        <button data-action="assign" title="Assign Doctor" aria-label="Assign Doctor" onClick={() => onAssignDoctor?.(row)}><FaUserDoctor /></button>
+                        <button data-action="assign" title="Assign to me" aria-label="Assign to me" onClick={() => onSelfAssign?.(row)}><FaUserDoctor /></button>
                         <button data-action="report" title="Report" aria-label="Report" onClick={() => onOpenReport?.(row)}><FaPen /></button>
                         <button data-action="notes" title="Clinical Notes" aria-label="Clinical Notes" onClick={() => onOpenNotes?.(row)}><FaRegNoteSticky /></button>
                         <button data-action="attach" title="Attachments" aria-label="Attachments" onClick={() => onOpenAttachments?.(row)}><FaCamera /></button>
@@ -186,7 +184,7 @@ export default function WorklistTable({
                           </span>
                         </dd>
                       </div>
-                      <div><dt>Assigned Doctor</dt><dd>{row.assigneddoctor?.map((d) => d.doctorName).join(", ") || "Unassigned"}</dd></div>
+                      <div><dt>Assigned Doctor</dt><dd>{doctor?.doctorName ?? "Unassigned"}</dd></div>
                       <div><dt>Images</dt><dd>{row.images ?? 0}</dd></div>
                     </dl>
 
@@ -268,7 +266,7 @@ export default function WorklistTable({
                       <div className={styles.actions}>
                         <button title="View" onClick={() => onView?.(row)}><FaEye /></button>
                         <button title="Web View" onClick={() => onWebView?.(row)}><FaDesktop /></button>
-                        <button title="Assign Doctor" onClick={() => onAssignDoctor?.(row)}><FaUserDoctor /></button>
+                        <button title="Assign to me" onClick={() => onSelfAssign?.(row)}><FaUserDoctor /></button>
                         <button title="Report" onClick={() => onOpenReport?.(row)}><FaPen /></button>
                         <button title="Clinical Notes" onClick={() => onOpenNotes?.(row)}><FaRegNoteSticky /></button>
                         <button title="Attachments" onClick={() => onOpenAttachments?.(row)}><FaCamera /></button>
@@ -308,11 +306,7 @@ export default function WorklistTable({
                             {row.study ?? "—"}
                           </span>
                     </td>
-                    <td data-label="Assigned Doctor">
-                      {row.assigneddoctor?.length
-                        ? <AssignedDoctorCell doctors={row.assigneddoctor} />
-                        : "Unassigned"}
-                    </td>
+                    <td data-label="Assigned Doctor" title={doctor?.doctorName}>{softHyphenate(doctor?.doctorName ?? "Unassigned")}</td>
                     <td className={styles.imagesCell} data-label="Images">{row.images ?? 0}</td>
                     <td>
                       <div className={styles.trailing}>

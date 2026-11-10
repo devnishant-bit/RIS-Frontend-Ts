@@ -15,8 +15,6 @@ import { RequireAuth } from './RequireAuth'
 import { RequirePermission } from './RequirePermission'
 import { routePaths } from './routePaths'
 import { routePageSections } from './routePageSections'
-import { ChatPage } from '../features/chat/pages/ChatPage'
-import { ChatProviders } from '../layouts/ChatProviders'
 
 interface PageRoute {
   path: string
@@ -30,7 +28,6 @@ const appPageRoutes: PageRoute[] = [
   { path: routePaths.reports, title: 'Reports' },
   { path: routePaths.editor, title: 'Report Editor' },
   { path: routePaths.settings, title: 'Settings' },
-  { path: routePaths.chat, title: 'Chat' },
   { path: routePaths.userCreation, title: 'User Creation', permission: 'users:create' },
   { path: routePaths.userGroup, title: 'User Group', permission: 'users:groups' },
   { path: routePaths.userRights, title: 'User Rights', permission: 'users:permissions' },
@@ -71,7 +68,6 @@ function MissingRoute() {
 
 function renderAppPage(route: PageRoute) {
   if (route.path === routePaths.worklist) return <WorklistPage />
-  if (route.path === routePaths.chat) return <ChatPage />
   if (route.path === routePaths.tatReport) return <TatReportPage />
   if (route.path === routePaths.inactiveReport) return <InactiveReportPage />
   // TEMP: this is the destination used by the profile menu's Clinical Schedule shortcut.
@@ -82,6 +78,39 @@ function renderAppPage(route: PageRoute) {
 
 export function AppRouter() {
   return (
-    <button>click me</button>
+    <Routes>
+      <Route element={<PublicLayout />}>
+        <Route path={routePaths.login} element={<LoginPage />} />
+      </Route>
+
+      <Route element={<RequireAuth />}>
+        <Route element={<AppLayout />}>
+          <Route index element={<DefaultRedirect />} />
+          {appPageRoutes
+            .filter((route) => route.path !== routePaths.dashboard)
+            .map((route) => (
+              <Route key={route.path} path={route.path} element={renderAppPage(route)} />
+            ))}
+          <Route element={<RequirePermission permission="dashboard:view" redirectTo={routePaths.worklist} />}>
+            <Route
+              path={routePaths.dashboard}
+              element={renderAppPage({ path: routePaths.dashboard, title: 'Dashboard', permission: 'dashboard:view' })}
+            />
+          </Route>
+          <Route path={routePaths.forbidden} element={<ForbiddenPage />} />
+        </Route>
+      </Route>
+
+      {/* The active parent App.js renders these even in its unauthenticated branch. */}
+      <Route element={<StandaloneLayout />}>
+        <Route path={routePaths.worklistWindow} element={<DemoFeaturePage title="Worklist Window" parentPath={routePaths.worklistWindow} description="The standalone Worklist Window page from the parent app will be built here." sections={routePageSections[routePaths.worklistWindow]} />} />
+        <Route path={routePaths.teleRadio} element={<DemoFeaturePage title="Tele-radiology Worklist" parentPath={routePaths.teleRadio} description="The standalone tele-radiology page from the parent app will be built here." sections={routePageSections[routePaths.teleRadio]} />} />
+        <Route path={routePaths.teleClientExt} element={<DemoFeaturePage title="Tele-client Extension" parentPath={routePaths.teleClientExt} description="The standalone client extension from the parent app will be built here." sections={routePageSections[routePaths.teleClientExt]} />} />
+        <Route path={routePaths.coordinatorDashboard} element={<DemoFeaturePage title="Coordinator Dashboard" parentPath={routePaths.coordinatorDashboard} description="The standalone coordinator dashboard from the parent app will be built here." sections={routePageSections[routePaths.coordinatorDashboard]} />} />
+        <Route path={routePaths.doctorPoolSetup} element={<DemoFeaturePage title="Doctor Pool Setup" parentPath={routePaths.doctorPoolSetup} description="The standalone doctor pool page from the parent app will be built here." sections={routePageSections[routePaths.doctorPoolSetup]} />} />
+      </Route>
+
+      <Route path={routePaths.notFound} element={<MissingRoute />} />
+    </Routes>
   )
 }
